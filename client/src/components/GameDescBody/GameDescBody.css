@@ -1,0 +1,120 @@
+.game-desc-body__hero{
+    background-image: url('/src/assets/mid-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.game-desc-body__wrapper{
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-desc-body__title{
+    text-align: center;
+    width: 70%;
+    margin: 50px auto;
+}
+
+.game-desc-body__title h1{
+    color: rgba(254,173,21,255);
+    text-align: center;
+    font-size: 60px;
+    letter-spacing: -3px;
+}
+
+.game-desc-body__title p{
+    color: #d7d7d7;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.info-box {
+    width: 70%;
+    padding-bottom: 200px;
+    height: 600px;
+}
+
+
+.outer {
+    border: 2px solid #645a56;
+    position: relative;
+    height: 100%;
+}
+
+.inner {
+    display: flex;
+    border: 4px solid #c1a768;
+    margin: 5px;
+    box-sizing: border-box;
+    height: 95%;
+    align-items: center;
+    background: rgba(0,0,0,.4);
+}
+
+.meta {
+    width: 50%;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.meta h2 {
+    color: rgba(254,173,21,255);
+    letter-spacing: -2px;
+
+}
+
+.meta p {
+    color: #d7d7d7;
+}
+.meta ul {
+    color: #d7d7d7;
+    list-style-type: disclosure-closed;
+}
+
+.meta a {
+    padding-inline-start: 40px;
+}
+
+.info-box__images {
+    display: flex;
+    width: 40%;
+    position: relative;
+    bottom: 0;
+}
+
+.info-box__images img {
+    position: absolute;
+    bottom: 0;
+}
+
+.firstInfoCardImage{
+    right: -120px;
+    height: 450px;
+    top: -265px;
+}
+.secondInfoCardImage{
+    left: -100px;
+    height: 480px;
+    top: -295px;
+}
+
+.thirdInfoCardImage{
+    right: -10px;
+    height: 450px;
+    top: -266px;
+}
+
+.fourthInfoCardImage{
+    right: -310px;
+    height: 450px;
+    top: -266px;
+}
+
+.fifthInfoCardImage{
+    left: -60px;
+    height: 450px;
+    top: -266px;
+}

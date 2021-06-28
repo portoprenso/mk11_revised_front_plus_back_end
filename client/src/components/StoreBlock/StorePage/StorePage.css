@@ -1,0 +1,23 @@
+.tabsContainer {
+  width: 60%;
+}
+
+@media all and (max-width: 1250px) {
+  .MuiTabs-flexContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .makeStyles-root-16 {
+    width: 100px;
+  }
+  .tabsContainer {
+    width: 100%;
+  }
+  .productList__container__discountbar {
+    display: none !important;
+  }
+}
+
+.storePage__showMoreButton {
+  background-color: white !important;
+}

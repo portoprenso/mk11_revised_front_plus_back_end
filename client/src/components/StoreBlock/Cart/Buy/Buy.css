@@ -1,0 +1,76 @@
+.card__container {
+    padding: 5vh;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/081ee8f5-b641-471d-b7ac-24d06fc463d6/d5sr6pa-47dd31c2-fa24-4f66-88ba-4c8f18da3afa.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA4MWVlOGY1LWI2NDEtNDcxZC1iN2FjLTI0ZDA2ZmM0NjNkNlwvZDVzcjZwYS00N2RkMzFjMi1mYTI0LTRmNjYtODhiYS00YzhmMThkYTNhZmEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.14C6dF3wvfS702RROnor12BvHUM7UxFn0XOoWwNYycc);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .plastic-card {
+    width: 70vw;
+    padding: 50px;
+  }
+  
+  .card__input {
+    padding: 0.375rem 0.75rem;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: rgba(253,169,15, 0.9);
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s;
+    display: block;
+    padding: 50px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.788);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  
+  .card__inputs {
+    display: block;
+    padding-top: 50px;
+    width: 100%;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  
+  .card__inputs .card__input {
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 25%;
+    height: 35px;
+    border: 1px solid #4375ffa9;
+  }
+  .card__btn {
+    width: 150px;
+    font-size: 14pt;
+    color: white;
+    background: rgba(253,169,15, 0.9);
+    height: 55px;
+    padding: 10px;
+    border: 1px solid #225cfdad;
+    border-radius: 10px;
+  }
+  .card__btn:hover {
+    background: #0044ff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .card__btn:hover {
+    border: 1px solid white;
+  }

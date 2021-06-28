@@ -1,0 +1,81 @@
+/* .profilePage__addHero__inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.card-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inp-type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profilePage__button {
+  max-height: 64px;
+  max-width: 128px;
+}
+
+.profile-page__main-container {
+  color: white;
+  background-image: url(../../assets/character-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.profile-page__main-container .card {
+  background-color: transparent;
+}
+
+.profile-page__fav-block {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.fav-block__item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+}
+
+.fav-block__item__removeButton {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+.fav-block__item__removeButton:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.profile-page__emailInfo-button {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.profilePage__user-image {
+  border-radius: 100px;
+}
+
+.profilePage__user-name {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.profile-page__addNewProduct-inputs {
+  padding: 50px;
+  border: 1px solid orange;
+  border-radius: 8px;
+}
+
+.profilePage__addHero__inputs__container {
+  padding: 50px;
+  border: 1px solid orange;
+  border-radius: 8px;
+} */

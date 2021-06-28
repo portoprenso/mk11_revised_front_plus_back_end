@@ -1,0 +1,148 @@
+.roster__hero{
+    background-image: url(../../assets/character-bg.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.roster__container{
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.bio__photo{
+    z-index: 1;
+}
+
+.bio__meta{
+    color: white;
+    align-self: center;
+}
+
+.roster__container__bio{
+    display: flex;
+}
+
+.bio__meta__name{
+    display: flex;
+    position: relative;
+}
+
+.bio__meta__name__strap{
+    width: initial;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+}
+
+.bio__meta__name__top{
+    z-index: 5;
+}
+
+.bio__meta__name__top h2{
+    z-index: 5;
+    color: rgb(253,169,15);
+}
+
+.roster__container__video {
+    padding-top: 50px;
+    border-bottom: 5px solid #fda90f;
+}
+
+.roster__container__charactersList{
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+.roster__container__charactersList__title div{
+    height: 2px;
+    width: 40vw;
+    background-color: #6a6969;
+}
+
+.roster__container__charactersList__title{
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.roster__container__charactersList__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.roster__container__charactersList__list__card::after{
+    background: linear-gradient(180deg,transparent,#000);
+    content: "_";
+    color: transparent;
+    z-index: 50;
+    position: absolute;
+    top: 92px;
+    width: inherit;
+}
+
+.roster__container__charactersList__list__card{
+    width: 100px;
+    height: 118px;
+    margin: 5px;
+    position: relative;
+    color: white;
+    background: radial-gradient(ellipse at center,#1e2938 0,#080808 100%);
+    border: 1px solid #152229;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.roster__container__charactersList__list__card img{
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+.roster__container__charactersList__list__card div{
+    text-align: center;
+    align-self: flex-end;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.roster__container__charactersList__list__card img:hover{
+    transition: 0.1s ease-in;
+    box-shadow: inset 0 0 50px rgba(253,169,15, 0.1), 0 0 50px rgba(253,169,15, 0.74);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    transform: scale(1.1);
+
+}
+
+@media screen and (max-width: 880px){
+    .roster__container__charactersList__list{
+        flex-direction: column;
+    }
+    .roster__container__charactersList__title div{
+        height: 2px;
+        width: 10vw;
+        background-color: #6a6969;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .roster__container__charactersList__list{
+        flex-direction: column;
+    }
+    .roster__container__charactersList__title div{
+        height: 2px;
+        width: 10vw;
+        background-color: #6a6969;
+    }
+}

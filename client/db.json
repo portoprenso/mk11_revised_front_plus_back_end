@@ -1,0 +1,520 @@
+{
+  "products": [
+    {
+      "title": "Plants vs Zombies",
+      "description": "Неугомонные зомби снова атакуют ваш дом. Не ищите спасительных пушек и мечей, а скорее сажайте чудо-растения, способные действительно эффективно противостоять лавинам противника. Генномодифицированная поросль готова убивать зомби пачками и самыми изысканными способами, так что не упустите шанс показать врагу, что природа отдохнула не только на них.",
+      "price": 175,
+      "oldPrice": 249,
+      "discountPercent": "30",
+      "author": "PopCap Games, Inc.",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/plants-vs-zombies.jpg?1505771258",
+      "imageLarge": "https://steampay.com/product/plants-vs-zombies.jpg?1526257075",
+      "countInStock": "0",
+      "id": 18,
+      "commentary": [
+        {
+          "text": "kjahdkjfhadf",
+          "email": "portoprenso@gmail.com",
+          "time": 1620712719437
+        },
+        {
+          "text": "kjdsfkljjklsdf",
+          "email": "portoprenso@gmail.com",
+          "time": 1620738259333
+        },
+        {
+          "text": "lkqjlgjq",
+          "email": "chegevara.cgv@mail.ru",
+          "time": 1620816782941
+        }
+      ],
+      "favorites": [
+        "portoprenso@gmail.com"
+      ],
+      "likes": [
+        "portoprenso@gmail.com"
+      ]
+    },
+    {
+      "title": "INSURGENCY SANDSTORM",
+      "description": "Вымышленный конфликт уже не первый день сотрясает одно из государств Ближнего Востока и грозит перерасти в нечто большее. Именно поэтому туда в срочном порядке направлен отряд бойцов специального предназначения.Готовы присоединиться к ребятам и помочь им погасить в зародыше пламя новой мировой войны? Тогда спешите купить Insurgency: Sandstorm на steampay.com! Но не рассчитывайте взять противника на испуг. Враг отлично подготовлен и отменно вооружен, так что у вас будет неплохой шанс прочувствовать на своей шкуре, что такое командная работа в экстремальных условиях.",
+      "price": 545,
+      "oldPrice": 999,
+      "discountPercent": "46",
+      "author": "Focus Home Interactive",
+      "category": "Экшены",
+      "image": "https://steampay.com/image/insurgency-sandstorm.jpg?1557614812",
+      "imageLarge": "https://steampay.com/product/insurgency-sandstorm.jpg?1557621062",
+      "countInStock": "10",
+      "id": 19,
+      "commentary": [
+        {
+          "text": "kjsdkljg",
+          "email": "portoprenso@gmail.com",
+          "time": 1620620198714
+        }
+      ],
+      "favorites": [],
+      "likes": [
+        "chegevara.cgv@mail.ru"
+      ]
+    },
+    {
+      "title": "RESIDENT EVIL VILLAGE",
+      "description": "Испытайте survival horror, каким его еще не видели, в восьмой части легендарной серии Resident Evil — Resident Evil Village.\n\nСпустя несколько лет после кошмарных событий Resident Evil 7 biohazard, заслужившей признание критиков, начинается другая история. Итан Уинтерс и его жена Миа обосновались на новом месте, вдали от ужасов прошлого. Но не успели супруги насладиться безмятежной жизнью, как их вновь постигла трагедия.\n\n",
+      "price": 1745,
+      "oldPrice": 1999,
+      "discountPercent": "13",
+      "author": "CAPCOM Co., Ltd.",
+      "category": "Экшены",
+      "image": "https://steampay.com/image/resident-evil-village.jpg?1611272864",
+      "imageLarge": "https://steampay.com/product/resident-evil-village.jpg?1611273085",
+      "countInStock": "0",
+      "id": 20,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "TERRARIA",
+      "description": "Встретили предложение купить Terraria на steampay.com – поспешите воспользоваться им, и вы не пожалеете! О том, что перед вами нереально увлекательный проект, говорит уже тот факт, что в игре смешана куча жанров. Порой сложно понять, какое направление превалирует, настолько тесно они переплелись. Инди-платформер, щедро сдобренный элементами ролевки и приключениями, порой предстает в облике чистейшей песочницы.\n\nВас ждет путешествие по отменно прорисованному, яркому миру. Вы сможете общаться с другими персонажами, изобретать и строить, заниматься геологическими исследованиями и просто наслаждаться жизнью… если, конечно, не будете заняты отражением атак местных аборигенов. Все и просто, и сложно, и чертовски увлекательно. Ну что, вперед?\n\n",
+      "price": 195,
+      "oldPrice": 249,
+      "discountPercent": "22",
+      "author": "Re-Logic",
+      "category": "РПГ",
+      "image": "https://steampay.com/image/terraria.jpg?1505771258",
+      "imageLarge": "https://steampay.com/product/terraria.jpg?1526257080",
+      "countInStock": "152",
+      "id": 22,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "THE ELDER SCROLLS V: SKYRIM",
+      "description": "The Elder Scrolls V: Skyrim Special Edition — это улучшенное и расширенное переиздание оригинальной The Elder Scrolls V: Skyrim, в котором были добавлены новые враги, снаряжение, локации, персонажи, а также включены все DLC.",
+      "price": 595,
+      "oldPrice": 1399,
+      "discountPercent": "58",
+      "author": "Bethesda Softworks",
+      "category": "РПГ",
+      "image": "https://steampay.com/image/the-elder-scrolls-v-skyrim-special-edition.jpg?1505771258",
+      "imageLarge": "https://steampay.com/product/the-elder-scrolls-v-skyrim.jpg?1527843110",
+      "countInStock": "53",
+      "id": 23,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "CONAN EXILES",
+      "description": "Более кровавой и жестокой игры на выживание геймерское сообщество еще не видело! Её сложно назвать RPG – это скорее survival, хотя тоже со своими фишками. Готовы в роли отверженного и обездоленного изгнанника скитаться по дикой пустоши, беспощадной к слабакам? Тогда вам стоит купить Conan Exiles в магазине steampay.com!\nЗдесь предстоит не просто борьба за жизнь: сюжет отправляет покорять мир, на просторы которого вас выбросят абсолютно голого и беспомощного. Сумеет ли ваш герой заложить и развить основы своего величия? Хватит ли у вас духу приносить в жертву богам себе подобных?\n\nВас ждет потрясающее, ломающее психику и заставляющее шевелиться волосы действо с тайнами и интригами, войнами и строительством. Погрузитесь в разгадки первых, разорвите паутину вторых, отыщите знания, накопленные древними цивилизациями, и станьте счастливым победителем, судить которого не посмеет никто!",
+      "price": 395,
+      "oldPrice": 899,
+      "discountPercent": "57",
+      "author": "Funcom",
+      "category": "РПГ",
+      "image": "https://steampay.com/image/conan-exiles.jpg?1505771258",
+      "imageLarge": "https://steampay.com/product/conan-exiles.jpg?1526257065",
+      "countInStock": "12",
+      "id": 24,
+      "commentary": [
+        {
+          "text": "asdqwe",
+          "email": "portoprenso@gmail.com",
+          "time": 1620474495692
+        },
+        {
+          "text": "asdasd",
+          "email": "portoprenso@gmail.com",
+          "time": 1620474662364
+        }
+      ],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "BIOMUTANT",
+      "description": "Жанр постапокалиптических ARPG пополнился новинкой с открытым миром, онлайн боями, элементами шутера и уникальным протагонистом, готовым пройти через тернии к звездам. И это отлично, ведь до конца света осталось совсем немного!\n\nЗемля гибнет от выбросов недрами маслянистой жидкости, отравляющей все вокруг. Огромные лужи уже практически добрались до Дерева Жизни, но никому до этого нет дела. Уцелевшие племена разрознены и ведут междоусобные разборки за ресурсы. Миру нужен кто-то, кто остановит безумие. Рискнете купить BIOMUTANT на steampay.com и взять на себя миссию по спасению остатков мира?\n\n",
+      "price": 2895,
+      "oldPrice": 3419,
+      "discountPercent": "16",
+      "author": "THQ Nordic",
+      "category": "РПГ",
+      "image": "https://steampay.com/image/biomutant.jpg?1557529713",
+      "imageLarge": "https://steampay.com/product/biomutant.jpg?1557596243",
+      "countInStock": "0",
+      "id": 25,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "VAMPIRE: THE MASQUERADE",
+      "description": "А вы знали, что Сиэтл основали вампиры? Более того, древние кланы помогли городу развиться до сегодняшнего состояния и правят в нем дальше, забрав под себя весь крупный бизнес. Вампиры свято соблюдают правила «Маскарада» и не демонстрируют свою сущность, однако сейчас конкуренция кланов достигла апогея и вот-вот грянет война.\n\nХотите поучаствовать в поиске бунтарей и не допустить мятежа? Тогда поторопитесь купить Vampire: The Masquerade – Bloodlines 2 на steampay.com! Кроме спасательной миссии, сценаристы предлагают порассуждать о том, может ли прошлая человеческая жизнь влиять на мировоззрение вурдалака, попробовать противопоставить традиции технологическому прогрессу, а искусство – коммерции. В общем, скучно не будет!",
+      "price": 3000,
+      "oldPrice": 5000,
+      "discountPercent": "40",
+      "author": "Paradox Interactive",
+      "category": "Экшены",
+      "image": "https://steampay.com/image/vampire-the-masquerade-bloodlines-2.jpg?1553292171",
+      "imageLarge": "https://steampay.com/product/vampire-the-masquerade-bloodlines-2.jpg?1553781698",
+      "countInStock": "0",
+      "id": 26,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "CHIVALRY II",
+      "description": "Chivalry 2 – вдохновленный эпическими битвами Средневековья многопользовательских слэшер. Игроков ждут сражения на мечах, град вражеских стрел, осады замков и многое другое, что было присуще военному делу той жестокой эпохи.",
+      "price": 995,
+      "oldPrice": 1199,
+      "discountPercent": "18",
+      "author": "Iceberg Interactive",
+      "category": "Экшены",
+      "image": "https://steampay.com/image/chivalry-2.jpg?1614633266",
+      "imageLarge": "https://steampay.com/product/chivalry-2.jpg?1614633266",
+      "countInStock": "0",
+      "id": 27,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "DAYS GONE",
+      "description": "Действие приключенческого боевика «Жизнь после» происходит в суровом открытом мире через два года после катастрофической пандемии.\n\nЕго главный герой Дикон Сент-Джон — бывший байкер и преступник, а ныне охотник за наградой, пытающийся обрести смысл жизни в мире, объятом смертью. Находите ресурсы в заброшенных поселениях, чтобы затем мастерить из них полезные предметы и оружие, или налаживайте контакт с другими выжившими, занятыми честной торговлей... или более кровавыми делами.",
+      "price": 2595,
+      "oldPrice": 2999,
+      "discountPercent": "14",
+      "author": "PlayStation Mobile, Inc.",
+      "category": "Экшены",
+      "image": "https://steampay.com/image/days-gone.jpg?1618997428",
+      "imageLarge": "DAYS GONE",
+      "countInStock": "0",
+      "id": 28,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "TOTAL WAR: WARHAMMER III",
+      "description": "Вдали от привычного мира с его жалкими войнами вас ждет новое измерение, где правит лишь темная магия: Царство Хаоса. Это ужасное место непостижимо для простых смертных. Его земли сулят огромную власть, но таят в себе пагубные соблазны. Соблазны, что очерняют душу. И поглощают ее.\n\nЦарством Хаоса правят четыре Разрушительные силы, которые только и ждут удачного момента, чтобы осквернить весь мир. Чумной бог Нургл, Владыка излишеств Слаанеш, Изменяющий пути Тзинч и бог кровопролития и резни Хорн.\n\nК счастью, границу между мирами сторожат два могущественных царства: стойкий Кислев и огромная империя под названием Великий Катай. У каждого из них свои трудности, однако теперь придется позабыть обо всем и направить войска прямо в Царство Хаоса.\n\nМир стоит на краю пропасти. Один неверный шаг — и случится катастрофа.\n\nНо кое-кто жаждет именно этого: в тени притаился древний игрок, который намеревается обрести высшую власть. И для этого ему нужен свой воитель…\n\nГрядущее столкновение затронет всех. Обуздаете ли вы своих демонов? Или же возглавите их?",
+      "price": 2995,
+      "oldPrice": 3439,
+      "discountPercent": "13",
+      "author": "SEGA, Feral Interactive",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/total-war-warhammer-iii.jpg?1612436601",
+      "imageLarge": "https://steampay.com/product/total-war-warhammer-iii.jpg?1612436706",
+      "countInStock": "0",
+      "id": 29,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "EUROPA UNIVERSALIS IV",
+      "description": "В дополнении Europa Universalis IV: Leviathan вас ждут новые инструменты утверждения власти в своем государстве. Новые дипломатические действия дают возможность пойти против более могущественных противников, а экономические нововведения позволят создать богатые вассальные империи, помогающие вашей столице развиваться и процветать.\n\nДополнение Leviathan также улучшает ключевые аспекты игры, в том числе колонии и регентства.",
+      "price": 385,
+      "oldPrice": 435,
+      "discountPercent": "12",
+      "author": "Paradox Interactive",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/europa-universalis-iv-leviathan.jpg?1619094652",
+      "imageLarge": "https://steampay.com/product/europa-universalis-iv-leviathan.jpg?1619094768",
+      "countInStock": "0",
+      "id": 30,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "EVIL GENIUS 2",
+      "description": "Сатирическая шпионская игра со строительством, в которой самый главный злодейский разум — это вы! Стройте базу, обучайте прислужников, защищайте свои операции от сил правопорядка и подчините себе весь мир!",
+      "price": 635,
+      "oldPrice": 725,
+      "discountPercent": "13",
+      "author": "Rebellion",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/evil-genius-2-world-domination.jpg?1560266771",
+      "imageLarge": "https://steampay.com/product/evil-genius-2-world-domination.jpg?1560356000",
+      "countInStock": "0",
+      "id": 31,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "STAR DYNASTIES",
+      "description": "Star Dynasties - это ролевая научно-фантастическая стратегическая игра, действие которой происходит в разделенной галактике после разрушения Земли. Уникальное процедурно-созданное повествование о человеческой драме и феодальной политике смешано с уровнем управления легкой империей.\n\nВаш выбор. Ваше наследие.",
+      "price": 425,
+      "oldPrice": 499,
+      "discountPercent": "15",
+      "author": "Iceberg Interactive",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/star-dynasties.jpg?1616321045",
+      "imageLarge": "https://steampay.com/product/star-dynasties.jpg?1616322541",
+      "countInStock": "212",
+      "id": 32,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "XCOM: ULTIMATE COLLECTION",
+      "description": "XCOM: ENEMY UNKNOWN – THE COMPLETE EDITION\nИгра XCOM: Enemy Unknown, удостоенная множества титулов «Игра года», является современным ремейком культовой классической игры XCOM.\nВ XCOM: Enemy Unknown вы встанете во главе секретной военизированной организации XCOM. В роли командующего XCOM вы должны отразить нашествие опасных инопланетных захватчиков. Вам придется следить за ресурсами, развивать технологии, планировать военные операции и отдавать приказы солдатам.\n\nУкрепите оборону с дополнением XCOM: Enemy Within, наборами материалов Slingshot Pack и Elite Soldier Pack.",
+      "price": 1295,
+      "oldPrice": 5046,
+      "discountPercent": "75",
+      "author": "2K, Feral Interactive (Mac)",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/xcom-ultimate-collection.jpg?1619645339",
+      "imageLarge": "https://steampay.com/product/xcom-ultimate-collection.jpg?1619645339",
+      "countInStock": "1231",
+      "id": 33,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "EMPIRE OF SIN",
+      "description": "Empire of Sin, стратегическая игра от Romero Games и Paradox Interactive, переносит вас в сердце преступного мира Чикаго 1920-х годов, когда там царил Сухой закон. Используя обаяние и устрашение, проложите путь к вершине и любой ценой постарайтесь удержаться.",
+      "price": 595,
+      "oldPrice": 725,
+      "discountPercent": "18",
+      "author": "Paradox Interactive",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/empire-of-sin.jpg?1560273825",
+      "imageLarge": "https://steampay.com/product/empire-of-sin.jpg?1560443577",
+      "countInStock": "1231",
+      "id": 34,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "WORMS RUMBLE - LEGENDS PACK",
+      "description": "Отпразднуйте 25-летние Worms с набором «Легенды»! Персонализируйте своего червяка с помощью этих замечательных костюмов, раскрасок оружия и фонов.",
+      "price": 195,
+      "oldPrice": 235,
+      "discountPercent": "18",
+      "author": "Team17 Digital Ltd",
+      "category": "Стратегии",
+      "image": "https://steampay.com/image/worms-rumble-legends-pack.jpg?1613474846",
+      "imageLarge": "https://steampay.com/product/worms-rumble-legends-pack.jpg?1613475056",
+      "countInStock": "12",
+      "id": 35,
+      "commentary": [],
+      "favorites": [],
+      "likes": []
+    },
+    {
+      "title": "GOTHIC II",
+      "description": "Вселенная \"Готики\" огромна, а ее глубина поражает воображение. В стародавние времена на земле правил жестокий король Робар Второй, который относился к народу довольно неплохо, однако каждого провинившегося он отправлял навечно в шахты, заставляя добывать руду - самый ценный ресурс в этой фентезийной стране. Созданная им тюрьма для каторжников была ограждена магическим куполом, возведенным придворными магами, сумевшими создать его таким, что, пройдя за его пределы, ничто живое уже не могло вернуться обратно. Однако кудесники не рассчитали свои силы - оставшиеся в изоляции заключенные взяли под контроль тюрьму, установив там свои правила. В обмен на жизненно важный ресурс заключенные получали от короля все необходимое для жизни: еду, одежду, новых работников, наложниц и прочее ... В то время как люди добывали руду, правитель готики продолжал вести войну с Орками, тысячи монстров, жаждущих крови, стремились уничтожить человечество, истребляя огромное количество славных воинов. Основным оружием против Орков являлась та самая драгоценная руда, из которой люди создавали мечи, топоры, копья и т.п. Вторая часть одной из лучших ролевых игр 2001-го года рассказывает нам продолжение захватывающей истории. Наступило время, когда прославленный магический барьер рухнул, выпустив на волю тысячи заключенных сеявших в округе смуту и разбой. Некогда наполненные жизнью земли стали погибать, утопая в огромном количестве людской крови. Эти события стали не самые ужасные, почуяв запах смерти, под землей очнулись от долгого сна ужасающие демоны, решившие именно сейчас, что настал их час, час, когда миром будет править темная сила...",
+      "price": 49,
+      "oldPrice": 199,
+      "discountPercent": 76,
+      "author": "THQ Nordic",
+      "category": "РПГ",
+      "image": "https://steampay.com/image/gothic-2-gold-edition.jpg?1505771258",
+      "imageLarge": "https://steampay.com/product/gothic-2.jpg?1526257068",
+      "countInStock": 21312,
+      "id": 36
+    }
+  ],
+  "roster": [
+    {
+      "name": "SPAWN",
+      "phrase": "ИСКУПЛЕНИЕ",
+      "description": "Эл Симмонс, некогда один из лучших солдат на службе правительства США и самый эффективный убийца, был безжалостно казнен своими же людьми. Заключив сделку с силами тьмы, Симмонс вернулся в мир живых в качестве адского отродья – Спауна. На сей раз ему предстоит сразиться за превосходство с лучшими бойцами в смертельной битве.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/spawn/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/spawn/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/spawn/video.mp4",
+      "id": 1
+    },
+    {
+      "name": "Джокер",
+      "phrase": "ХАОС",
+      "description": "Непредсказуемый, жестокий и опасный, Джокер - само воплощение хаоса! Именно он убил Робина, искалечил Бэтгерл, пытал и безжалостно убил множество людей в мире DС. А теперь он намерен заявить о себе в качестве бойца Mortal Kombat.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/the-joker/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/the-joker/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/the-joker/video.mp4",
+      "id": 2
+    },
+    {
+      "name": "Fujin",
+      "phrase": "SECURITY",
+      "description": "The God of Wind, Fujin serves the Elder Gods alongside his brother, Raiden, as Protectors of Earthrealm. Affable and lighthearted, he’s adept at inspiring peoples’ innate capacity for goodness and heroism to conquer forces of hatred and tyranny. Fujin believes Earthrealm’s best days are still to come, and he fights to ensure that bright future.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/fujin/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/fujin/thumb-p.png",
+      "video": "",
+      "id": 3
+    },
+    {
+      "name": "Рэмбо",
+      "phrase": "CВОБОДА",
+      "description": "Джон Рэмбо - бывший солдат спецназа Соединенных Штатов, которого постоянно преследуют мысли о пережитом во Вьетнаме. Он груб, агрессивен и хорошо известен тем, что ввязывается в опасные ситуации в одиночку. Чтобы проникнуть во вселенную Mortal Kombat, Рэмбо снова использует свои безжалостные боевые навыки.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/rambo/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/rambo/thumb-p.png",
+      "video": "",
+      "id": 4
+    },
+    {
+      "name": "Рейн",
+      "phrase": "ДОЛЖНОСТЬ",
+      "description": "Так как Рейн вырос сиротой, он решил вступить в армию. Стратегический гений Рейна принес ему славу и продвижение по службе. Он использовал свое положение и выяснил, что является незаконнорожденным сыном бога Аргуса. Вооруженный знанием, что он наполовину бог, Рейн сражается за свое место в пантеоне богов Эдении.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/rain/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/rain/thumb-p.png",
+      "video": "",
+      "id": 5
+    },
+    {
+      "name": "Милина",
+      "phrase": "ЛИЧНОСТЬ",
+      "description": "Милина - это результат дьявольских экспериментов Шан Цзуна по клонированию: идеальное сочетание таркатанской свирепости с атлетическим изяществом. Кроника перенесла Милину в текущую временную линию, где она узнала о своем трагическом будущем. Ее враги должны покориться или умереть.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/mileena/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/mileena/thumb-p.png",
+      "video": "",
+      "id": 6
+    },
+    {
+      "name": "Robocop",
+      "phrase": "СПРАВЕДЛИВОСТЬ",
+      "description": "Alex Murphy was a dutiful police officer who was brutally executed by a local gang. Brought back to life through OCP technology, Murphy was transformed into RoboCop, a highly advanced cybernetic police officer designed to uphold the law and protect the innocent. Now entering the Mortal Kombat universe, RoboCop has received a few upgrades and is ready to serve the public by apprehending any Kombatants that stand in his way.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/robocop/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/robocop/thumb-p.png",
+      "video": "",
+      "id": 7
+    },
+    {
+      "name": "Sheeva",
+      "phrase": "EQUALITY",
+      "description": "The male Shokan scoffed when Sheeva entered their contest to choose the Shokan’s next leader. But Sheeva proved herself more than their equal. After a resounding victory, she was crowned the first Queen of the Shokan. As Queen, Sheeva now leads her people in the fight to attain their rightful place, as partners in Outworld’s rule.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/sheeva/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/sheeva/thumb-p.png",
+      "video": "",
+      "id": 8
+    },
+    {
+      "name": "ДЖЕЙД",
+      "phrase": "ВЕРНОСТЬ",
+      "description": "Бесшумная убийца и имперский телохранитель. Джейд еще ребенком была отдана Шао Кану в услужение собственной семьей. Император Внешнего мира стал для нее единственным «отцом» и наставником, и все же Джейд отказалась выполнить его приказ – убить близкую подругу Китану. Гнев Шао Кана был страшен. Отныне Джейд стремится положить конец его правлению.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/jade/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/jade/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/jade/video.mp4",
+      "id": 9
+    },
+    {
+      "name": "ЭРРОН БЛЭК",
+      "phrase": "АДРЕНАЛИН",
+      "description": "Лучший стрелок Техаса покинул свой дом и отправился на поиски приключений вместе с Кано и Черным драконом. Внешний мир стал идеальной площадкой для жестоких игр Эррона Блэка, и самый смертоносный чужак признал его своим новом домом.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/erron-black/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/erron-black/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/erron-black/video.mp4",
+      "id": 10
+    },
+    {
+      "name": "КАБАЛ",
+      "phrase": "АЛЧНОСТЬ",
+      "description": "Скорость самого быстрого боевика Черного дракона уступает лишь его жадности. Когда-то еще зеленым новобранцем он повстречал Кано и продал свой участок и коллег за круглую сумму и место в синдикате. С тех пор Кабал отправлялся по душу любого, на кого указывал Кано.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/kabal/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/kabal/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/kabal/video.mp4",
+      "id": 11
+    },
+    {
+      "name": "КУН ЛАО",
+      "phrase": "УВАЖЕНИЕ",
+      "description": "Наследник Великого Кун Лао и монах Шаолиня. Младший Кун Лао заслужил величие, положив конец смертоносному альянсу Шан Цзуна и Куан Чи в турнире «Смертельная битва». Горячий и порывистый, однако храбрый и бесстрашный Кун Лао сражается, чтобы доказать, что достоин своих славных предков.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/kung-lao/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/kung-lao/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/kung-lao/video.mp4",
+      "id": 12
+    },
+    {
+      "name": "САБ-ЗИРО",
+      "phrase": "ИСКУПЛЕНИЕ",
+      "description": "Великий мастер клана Линь Куй. Куай Лян превозмог саму смерть, чтобы искупить зло, свершенное Сектором и киборгами Линь Куй. Он восстановил клан и заключил мир с Сирай Рю. Великий мастер надеется начать с чистого листа, оставив грехи Линь Куй в прошлом.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/sub-zero/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/sub-zero/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/sub-zero/video.mp4",
+      "id": 13
+    },
+    {
+      "name": "СКОРПИОН",
+      "phrase": "МЕСТЬ",
+      "description": "Движимый местью Ханзо Хасаши, великий мастер Сирай Рю, прошел сквозь ад и вернулся, чтобы отомстить за погубленную семью и клан. Не ведая отдыха, он преследовал убийцу, колдуна Куан Чи, пока не уничтожил его. Ныне Ханзо возглавляет возрожденный клан Сирай Рю и стремится отомстить за тех, кто не может сделать это сам.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/scorpion/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/scorpion/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/scorpion/video.mp4",
+      "id": 14
+    },
+    {
+      "name": "ЦЕТРИОН",
+      "phrase": "БАЛАНС",
+      "description": "Старшая богиня добродетели и защитница жизни. Именно Цетрион в свое время изгнала Шиннока в Преисподнюю, когда тот угрожал Старшим богам. Ее благословение снисходит на воинов, сражающихся с тьмой. Однако порой героические деяния, которым покровительствует богиня, вступают в конфликт с ее стремлением к всеобщему балансу.\n\n",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/cetrion/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/cetrion/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/cetrion/video.mp4",
+      "id": 15
+    },
+    {
+      "name": "ФРОСТ",
+      "phrase": "ВЫСОКОМЕРИЕ",
+      "description": "Самая опасная ученица великого мастера Саб-Зиро. В исторический момент примирения с кровным врагом клана, Скорпионом, Фрост бросила вызов своему учителю, провозгласив, что он не достоин титула. Саб-Зиро одержал победу в битве и изгнал Фрост из клана. Годами она искала возможность расправиться с наставником. И наконец, нашла.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/frost/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/frost/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/frost/video.mp4",
+      "id": 16
+    },
+    {
+      "name": "БАРАКА",
+      "phrase": "СОХРАНЕНИЕ",
+      "description": "За то, что воинственные кочевники из племени таркатан питаются плотью своих врагов, в империи Внешнего мира они считаются существами второго сорта. Их предводитель Барака смиренно служит Шао Кану, чтобы его народ и впредь мог жить в суровых пустошах, пожирая все, что попадается на пути.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/baraka/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/baraka/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/baraka/video.mp4",
+      "id": 17
+    },
+    {
+      "name": "РЕЙДЕН",
+      "phrase": "БЕЗОПАСНОСТЬ",
+      "description": "Бессмертный бог грома и защитник Земного царства. Раз за разом Рейден спасал Земное царство, поднимая на защиту родного мира самых отважных и умелых воинов своего времени. Спустя века жестоких битв и кровопролития он опасается, что все это не прошло бесследно для человечества и его самого.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/raiden/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/raiden/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/raiden/video.mp4",
+      "id": 18
+    },
+    {
+      "name": "ШАО КАН",
+      "phrase": "ГОСПОДСТВО",
+      "description": "Император Внешнего мира. Тысячелетия Шао Кан властвовал во множестве миров, стремительно завоевывая новые земли. Но покорить Земное царство ему помешали правила турнира «Смертельная битва». Шао Кан проиграл битву, но не войну и по-прежнему стремится к полной и безоговорочной победе.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/shao-kahn/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/shao-kahn/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/shao-kahn/video.mp4",
+      "id": 19
+    },
+    {
+      "name": "ДИ’ВОРА",
+      "phrase": "ВЫЖИВАНИЕ",
+      "description": "Ди’Вора – особь из расы китиннов, разумных насекомых с распределенным сознанием. Она служила Шао Кану, Коталь Кану и Шинноку, но верна оставалась лишь своему рою. Ди’Вора не чурается лжи, предательства и ударов в спину – все ради того, чтобы рой выжил, когда остальные погибнут.",
+      "bigPic": "https://cdn-prod.mortalkombat.com/roster/d-vorah/body.png",
+      "littlePic": "https://cdn-prod.mortalkombat.com/roster/d-vorah/thumb-p.png",
+      "video": "https://cdn-prod.mortalkombat.com/roster/d-vorah/video.mp4",
+      "id": 20
+    },
+    {
+      "name": "test person",
+      "phrase": "test",
+      "description": "test",
+      "bigPic": "test",
+      "littlePic": "test",
+      "video": "test",
+      "id": 21
+    }
+  ],
+  "dbUsers": []
+}

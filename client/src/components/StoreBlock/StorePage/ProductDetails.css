@@ -1,0 +1,272 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.body_details {
+  height: auto;
+}
+
+.details__topBackgroung {
+  position: absolute;
+  width: 100%;
+  height: 479px;
+  background-image: url(https://steampay.com/img/background_product.jpg);
+  background-size: 100vw;
+  background-size: cover;
+  color: chocolate;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.363);
+  text-align: center;
+  transition: 0.7s;
+  z-index: -1;
+}
+
+.one {
+  display: flex;
+  margin-left: 80px;
+  margin-top: 50px;
+}
+.one > li {
+  padding-left: 20px;
+  list-style-type: none;
+}
+.one > li::after {
+  content: ">";
+  color: rgb(221, 145, 45);
+  padding-left: 10px;
+  font-weight: bold;
+}
+h1 {
+  text-transform: uppercase;
+  padding-top: 40px;
+  margin-left: 100px;
+}
+.main__Container {
+  display: flex;
+}
+.main_img:hover {
+  color: #fff;
+}
+.main_img p {
+  text-transform: uppercase;
+  padding-top: 350px;
+}
+.main_info {
+  background-color: rgb(54, 52, 51);
+  width: 375px;
+  height: fit-content;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.main_info p {
+  padding-top: 20px;
+  color: rgb(121, 117, 118);
+}
+.main_info span {
+  padding-left: 20px;
+  color: #fff;
+}
+
+.mains_info {
+  background-color: rgb(109, 103, 103);
+  width: 370px;
+  height: 220px;
+}
+.mains_info li {
+  color: #fff;
+  padding-left: 25px;
+  padding-top: 16px;
+  list-style-type: none;
+}
+.main_menu_left {
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.mains_menu_right {
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 60%;
+}
+.mains_info span {
+  color: chocolate;
+}
+.mains_price {
+  display: flex;
+  margin-left: 30px;
+}
+.mains_price_menu {
+  display: flex;
+}
+.mains_price_one {
+  width: 108px;
+  height: 101px;
+  background: rgba(9, 9, 121, 0);
+  text-align: center;
+  border: 5px solid #1eb42a;
+}
+.mains_price_one p {
+  padding-top: 30px;
+  font-size: 25px;
+}
+.main_price_two {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.main_price_two h2 {
+  font-size: 35px;
+}
+
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+.offset:hover,
+.offset:focus {
+  box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+}
+.offset {
+  --color: #19bc8b;
+  --hover: #1973bc;
+}
+.btn_offset button {
+  color: var(--color);
+  transition: 0.25s;
+}
+.btn_offset button:hover,
+button:focus {
+  border-color: var(--hover);
+  color: #fff;
+}
+.btn_offset button {
+  background: none;
+  width: 400px;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  cursor: pointer;
+}
+.btn_offset {
+  margin-left: 23px;
+}
+
+.two_btn {
+  display: flex;
+  margin-left: 23px;
+}
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+.fill {
+  --color: #19bc8b;
+  --hover: #1973bc;
+}
+
+.two_btn button {
+  color: var(--color);
+  transition: 0.25s;
+}
+.two_btn button:hover,
+button:focus {
+  border-color: var(--hover);
+  color: #fff;
+}
+.two_btn button {
+  background: none;
+  width: 200px;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.nakonecto {
+  background-color: rgb(224, 217, 217);
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  padding: 40px;
+}
+.nakonecto2 {
+  background-color: rgb(224, 217, 217);
+  height: auto;
+  margin-top: 50px;
+  width: 100%;
+  padding: 40px;
+}
+.nakonecto2 p {
+  padding-left: 10px;
+}
+.nakonecto2 h2 {
+  padding-left: 50px;
+}
+
+@media all and (max-width: 1400px) {
+  .mains_price_menu {
+    display: flex;
+    flex-direction: column;
+  }
+  .mains_price {
+    margin-left: 0px;
+  }
+  .btn_offset,
+  .two_btn {
+    margin-left: 0px;
+  }
+  .nakonecto {
+    height: 300px;
+    margin-top: 50px;
+  }
+  .nakonecto p {
+    font-size: 13px;
+  }
+  .nakonecto h2 {
+    font-size: 20px;
+  }
+  .nakonecto2 {
+    height: 300px;
+  }
+  .nakonecto2 h2 {
+    font-size: 20px;
+  }
+}
+@media all and (max-width: 1000px) {
+  .main__Container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .nakonecto {
+    height: 300px;
+    margin-top: 50px;
+  }
+  .nakonecto p {
+    font-size: 8px;
+  }
+  .nakonecto h2 {
+    font-size: 15px;
+  }
+  .nakonecto2 {
+    height: 300px;
+  }
+  .nakonecto2 h2 {
+    font-size: 15px;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .btn_offset button {
+    width: 200px;
+    font-size: 12px;
+  }
+  .two_btn button {
+    width: 100px;
+    font-size: 8px;
+    padding: 4px;
+  }
+}

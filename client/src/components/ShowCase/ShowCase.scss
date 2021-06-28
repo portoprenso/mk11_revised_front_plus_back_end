@@ -1,0 +1,21 @@
+.showcase__container {
+    padding-top: 75px;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    background-image: url(https://cdn-prod.mortalkombat.com/ultimate/media/media-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.products__container {
+    width: 65%;
+    /* height: 100%; */
+    border: 1px solid black;
+}
+
+.products__categories {
+    width: 25%;
+    /* height: 100%; */
+}

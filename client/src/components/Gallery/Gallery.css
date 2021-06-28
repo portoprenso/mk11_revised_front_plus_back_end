@@ -1,0 +1,32 @@
+.gallery__container {
+  color: white;
+  background-image: url(../../assets/character-bg.webp) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  padding-top: 75px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.gallery__subContainer {
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.gallery__subContainer__header {
+  color: #fda90f;
+  font-size: 60px;
+}
+
+.gallery__trailers-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

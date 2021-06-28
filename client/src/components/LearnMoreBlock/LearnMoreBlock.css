@@ -1,0 +1,61 @@
+.LearnMoreBlock-body__hero{
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.LearnMoreBlock-body__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.LearnMoreBlock__card__inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 250px;
+}
+
+.LearnMoreBlock__cardImg{
+    position: relative;
+    height: 100%;
+    max-width: fit-content;
+}
+
+
+.LearnMoreBlock__card__inner{
+        display: flex;
+        border: 4px solid #c1a768;
+        margin: 5px;
+        box-sizing: border-box;
+        align-items: center;
+        background: rgba(0,0,0,.4);
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+.LearnMoreBlock__card__inner:hover{
+    transition: 0.1s ease-in;
+    box-shadow: inset 0 0 50px rgba(253,169,15, 0.1), 0 0 50px rgba(253,169,15, 0.74);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+}
+
+.LearnMoreBlock__meta h3{
+    align-self: center;
+    text-align: center;
+    color: white;
+}
+
+@media screen and (max-width: 480px){
+    .LearnMoreBlock__cardImg{
+        height: 75%;
+    }
+    .LearnMoreBlock__card__inner{
+        width: 320px;
+        height: 200px;    
+    }
+}

@@ -1,0 +1,77 @@
+td {
+  padding: 15px 0;
+  border-bottom: 1px solid grey;
+}
+
+.cart {
+  background-image: url(../../../assets/character-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.cart-container {
+  padding-top: 100px;
+}
+
+.cart td {
+  padding: 10px 50px;
+}
+.cart__table {
+  color: white;
+  margin: 0 auto;
+  width: 700px;
+  -webkit-box-shadow: -1px 0px 33px 10px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -1px 0px 33px 10px rgba(34, 60, 80, 0.2);
+  box-shadow: -1px 0px 33px 10px rgba(34, 60, 80, 0.2);
+  padding-top: 50px;
+}
+thead {
+  display: flex;
+}
+.img img {
+  padding-left: 20px;
+  padding-top: 20px;
+  width: 200px;
+  height: auto;
+}
+
+ul span {
+  border-bottom: 1px solid #000;
+  padding-left: 20px;
+}
+.cart__tr-item li {
+  padding-top: 20px;
+  list-style-type: none;
+}
+
+.cart__tr-item {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.btn_sum {
+  padding-left: 20px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.btn_sum button {
+  border: 2px solid red;
+  outline: none;
+  width: 250px;
+  padding: 10px;
+  cursor: pointer;
+  color: #000;
+  font-size: 20px;
+  transition: 0.5s;
+}
+.btn_click:hover {
+  color: rgb(255, 0, 0);
+  background-color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .cart__table {
+    height: fit-content;
+    width: 80%;
+  }
+}
