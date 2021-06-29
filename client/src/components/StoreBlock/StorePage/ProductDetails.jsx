@@ -206,10 +206,24 @@ const ProductDetails = (store) => {
                         <p>трейлер и скриншоты</p>
                     </div>
                     <div className="main_info">
-                        <p>Жанр <span>{types && types[showCaseDataDetails.typeId].name}</span></p>
+                        <p>Жанр <span>
+                        {types
+                            ? types.map((type, index) => {
+                                if (type.id === showCaseDataDetails.typeId)
+                                  return types[index].name;
+                              })
+                            : "Жанр (typeId)"}
+                            </span></p>
                         <p>Язык <span>Английский, Русский</span></p>
                         {/* <p>Дата выхода <span>18 июня 2012</span></p> */}
-                        <p>Издатель <span>{brands && brands[showCaseDataDetails.brandId].name}</span></p>
+                        <p>Издатель <span>
+                        {brands
+                            ? brands.map((brand, index) => {
+                                if (brand.id === showCaseDataDetails.brandId)
+                                  return brands[index].name;
+                              })
+                            : "Издатель (brandId)"}
+                            </span></p>
                         {/* <p>Особенности <span>Для одного игрока</span></p> */}
                         <p>Цель <span>Достижения</span></p>
                         <p>Регион <span>Россия</span></p>

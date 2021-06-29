@@ -6,5 +6,6 @@ router.post('/', gameController.create)
 router.get('/', gameController.getAll)
 router.get('/:id', gameController.getOne)
 router.delete('/:id', gameController.delete)
+router.patch('/:id', gameController.update)
 
 module.exports = router

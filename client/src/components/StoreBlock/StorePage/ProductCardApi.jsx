@@ -80,7 +80,7 @@ const ProductCardApi = (store) => {
                 title={<Typography variant="h6">{game.name}</Typography>}
                 subheader={
                     <Typography color="textSecondary">
-                        {types && types[game.typeId].name}
+                        {/* {types && types[game.typeId].name} */}
                     </Typography>
                 }
             />

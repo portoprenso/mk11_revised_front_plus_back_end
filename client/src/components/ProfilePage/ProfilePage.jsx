@@ -116,16 +116,16 @@ const ProfilePage = (store) => {
     } = store;
     const [perc, setPerc] = useState(0);
     const history = useHistory();
-    const nameRef = useRef();
+    const heroNameRef = useRef();
     const phraseRef = useRef();
-    const descriptionRef = useRef();
+    const heroDescriptionRef = useRef();
     const bigPicRef = useRef();
     const littlePicRef = useRef();
     const videoRef = useRef();
     
     // addNewProduct refs ↓
-    const titleRef = useRef();
-    const descriptionForProductRef = useRef();
+    const nameRef = useRef();
+    const descriptionRef = useRef();
     const priceRef = useRef();
     const oldPriceRef = useRef();
     const discountPercentPriceRef = useRef();
@@ -199,13 +199,12 @@ const ProfilePage = (store) => {
     }
 
     async function handleChangeProduct() {
-
         let newObjInfo = new FormData();
-        newObjInfo.append("title", titleRef.current.value)
-        newObjInfo.append("description", descriptionForProductRef.current.value)
+        newObjInfo.append("name", nameRef.current.value)
+        newObjInfo.append("description", descriptionRef.current.value)
         
         let newObj = new FormData();
-        newObj.append("title", titleRef.current.value)
+        newObj.append("name", nameRef.current.value)
         newObj.append("price", parseInt(priceRef.current.value))
         newObj.append("oldPrice", parseInt(oldPriceRef.current.value))
         newObj.append("discountPercent", parseInt(discountPercentPriceRef.current.value))
@@ -215,12 +214,12 @@ const ProfilePage = (store) => {
         newObj.append("imageLarge", imageLargeRef.current.files[0])
         newObj.append("countInStock", parseInt(countInStockRef.current.value))
         newObj.append("info", JSON.stringify({
-            title: titleRef.current.value,
-            description: descriptionForProductRef.current.value,
+            title: nameRef.current.value,
+            description: descriptionRef.current.value,
         }))
         // console.log(newObj)
         // let newObj = {
-        //     title: titleRef.current.value,
+        //     name: nameRef.current.value,
         //     price: parseInt(priceRef.current.value),
         //     oldPrice: parseInt(oldPriceRef.current.value),
         //     discountPercent: parseInt(discountPercentPriceRef.current.value),
@@ -229,14 +228,14 @@ const ProfilePage = (store) => {
         //     image: imageRef.current.files[0],
         //     countInStock: parseInt(countInStockRef.current.value),
             // info: {
-            //     title: titleRef.current.value,
-            //     description: descriptionForProductRef.current.value,
+            //     name: nameRef.current.value,
+            //     description: descriptionRef.current.value,
             //     imageLarge: imageLargeRef.current.value,
             // }
         // };
         await addNewProduct(newObj, history, getProductsData, store);
-        // titleRef.current.value = null;
-        // descriptionForProductRef.current.value = null;
+        // nameRef.current.value = null;
+        // descriptionRef.current.value = null;
         // priceRef.current.value = null;
         // oldPriceRef.current.value = null;
         // discountPercentPriceRef.current.value = null;
@@ -380,7 +379,7 @@ const ProfilePage = (store) => {
                                     <Typography variant="h6">Name</Typography>
                                     <TextareaAutosize
                                         className="inp-type__input"
-                                        ref={nameRef}
+                                        ref={heroNameRef}
                                         placeholder="Имя персонажа"
                                     />
                                 </Grid>
@@ -458,7 +457,7 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <TextareaAutosize
                                         className="inp-type__input"
-                                        ref={titleRef}
+                                        ref={nameRef}
                                         placeholder="Название"
                                     />
                                 </Grid>
@@ -468,7 +467,7 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <TextareaAutosize
                                         className="inp-type__input"
-                                        ref={descriptionForProductRef}
+                                        ref={descriptionRef}
                                         placeholder="Описание"
                                     />
                                 </Grid>
@@ -615,7 +614,7 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <TextareaAutosize
                                         className="inp-type__input"
-                                        ref={titleRef}
+                                        ref={nameRef}
                                         placeholder="Название"
                                     />
                                 </Grid>
