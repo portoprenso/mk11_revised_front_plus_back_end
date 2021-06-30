@@ -9,7 +9,7 @@ import DetailsIcon from "@material-ui/icons/Details";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useAuth } from "../../../contexts/AuthContext";
 import { connect } from "react-redux";
-import { $host, fetchTypes } from "../../../helpers/functions";
+import { $host, check, getDecodedToken } from "../../../helpers/functions";
 
 
 
@@ -42,7 +42,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteProduct: async (id, getShowCaseData) => {
-            let { data } = await $host.delete(`api/game/`);
+            let { data } = await $host.delete(`api/game/${id}`);
+            // console.log(data)
             getShowCaseData()
         },
         getShowCaseData: async () => {
@@ -58,17 +59,14 @@ const mapDispatchToProps = (dispatch) => {
 const ProductCardApi = (store) => {
     const history = useHistory();
     const classes = useStyles();
-    const { currentUser } = useAuth();
-    const {deleteProduct, game, getShowCaseData} = store
-    console.log(game);
-    console.log(currentUser)
-    console.log(store);
-    const [types, setTypes] = useState()
-    useEffect(() => {
-        fetchTypes().then(data => setTypes(data))
-    }, [])
+    const { deleteProduct, game, getShowCaseData, types, user } = store
+    // console.log(game);
+    // console.log(store);
+    // useEffect(() => {
+    //     getDecodedToken().then(data => console.log(data))
+    // }, [])
 
-    console.log(types)
+    console.log(user)
 
     return (
         <Card className={classes.root}>
@@ -80,7 +78,7 @@ const ProductCardApi = (store) => {
                 title={<Typography variant="h6">{game.name}</Typography>}
                 subheader={
                     <Typography color="textSecondary">
-                        {/* {types && types[game.typeId].name} */}
+                        {types.map((type, index) => {if(type.id === game.typeId) return types[index].name})}
                     </Typography>
                 }
             />
@@ -95,8 +93,8 @@ const ProductCardApi = (store) => {
                 </Link>
             </Typography>
             <Grid xs={1}>
-                {currentUser &&
-                currentUser.uid === "Ti6pFHiMAkdij9f1OlefDNhkwFT2" ? (
+                {user &&
+                user.role === "ADMIN" ? (
                     <div>
                         <Button
                         onClick={() => deleteProduct(game.id, getShowCaseData)}

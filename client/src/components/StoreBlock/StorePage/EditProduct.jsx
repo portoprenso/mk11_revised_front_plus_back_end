@@ -19,7 +19,7 @@ import Footer from "../../Footer/Footer";
 import { connect } from "react-redux";
 import axios from "axios";
 import { JSON_API } from "../../../helpers/static";
-import { $host, fetchBrands, fetchTypes } from "../../../helpers/functions";
+import { $authHost, $host, fetchBrands, fetchTypes } from "../../../helpers/functions";
 
 
 
@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
     productDetails: state.productReducer.productDetails,
     productsData: state.productReducer.productsData,
     showCaseDataDetails: state.productReducer.showCaseDataDetails,
+    user: state.authReducer.user
   };
 };
 
@@ -65,7 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
   // },
 
   editShowCaseDetails: async (id, newObj) => {
-    await $host.patch(`/api/game/${id}`, newObj);
+    await $authHost.patch(`/api/game/${id}`, newObj);
     // getShowCaseData(story);
   },
   // editShowCaseDetails: async (id, newObj, story, getShowCaseData) => {
@@ -89,7 +90,8 @@ const EditProduct = (store, { name, body }) => {
     editProduct,
     getShowCaseDetails,
     getShowCaseData,
-    editShowCaseDetails
+    editShowCaseDetails,
+    user
   } = store;
   const { id } = useParams();
   // const { getProductDetails, productDetails, editProduct, getProductsData } = useProducts()
@@ -100,7 +102,7 @@ const EditProduct = (store, { name, body }) => {
   const [selectedBrands, setSelectedBrands] = useState(null);
   const [types, setTypes] = useState(null)
   const [brands, setBrands] = useState(null)
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   const history = useHistory();
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -122,7 +124,7 @@ const EditProduct = (store, { name, body }) => {
   console.log(showCaseDataDetails)
 
   function putData() {
-    if (showCaseDataDetails.info && nameRef.current && currentUser && currentUser.uid === "Ti6pFHiMAkdij9f1OlefDNhkwFT2") {
+    if (showCaseDataDetails.info && nameRef.current && user && user.role === "ADMIN") {
       nameRef.current.value = showCaseDataDetails.name;
       console.log(`this is showcase in putdata ${showCaseDataDetails}`)
       descriptionRef.current.value = showCaseDataDetails.info[0].description;
@@ -180,7 +182,7 @@ const EditProduct = (store, { name, body }) => {
   return (
     <>
       <Header />
-      {currentUser && currentUser.uid === "Ti6pFHiMAkdij9f1OlefDNhkwFT2" ? (
+      {user && user.role === "ADMIN" ? (
         <div
           style={{
             dispaly: "flex",

@@ -85,12 +85,25 @@ const TypeGame = sequelize.define('type_game', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
+const Comment = sequelize.define('comment', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    text: {type: DataTypes.TEXT, allowNull: false},
+    gameId: {type: DataTypes.INTEGER},
+    userId: {type: DataTypes.INTEGER}
+})
+
 
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
 User.hasMany(Rating)
 Rating.belongsTo(User)
+
+User.hasMany(Comment)
+Comment.belongsTo(User)
+
+Game.hasMany(Comment)
+Comment.belongsTo(Game)
 
 Basket.hasMany(BasketGame)
 BasketGame.belongsTo(Basket)

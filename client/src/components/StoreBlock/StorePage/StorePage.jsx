@@ -22,6 +22,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { JSON_API } from '../../../helpers/static';
+import { fetchTypes } from '../../../helpers/functions';
   
   const theme = createMuiTheme({
     status: {
@@ -149,6 +150,7 @@ const StorePage = (props) => {
     const theme = useTheme();
     const history = useHistory()
     const [value, setValue] = useState(0);
+    const [types, setTypes] = useState()
     // const {getProductsData,
     //     productsData,
     //     // paginationPages,
@@ -192,10 +194,13 @@ const StorePage = (props) => {
     // console.log(dataLimit)
 
     useEffect(() => {
+        fetchTypes().then(data => setTypes(data));
         getProductsData(history, dataLimit);
         // getProductsDataDiscountSorted(history);
         // console.log(productsWithDiscount);
     },[dataLimit])
+
+    
     return (
         <>
         <Header />
@@ -229,7 +234,7 @@ const StorePage = (props) => {
                                 <Grid className={classes.productList__container__mainbar} container item spacing={4}>
                                     {
                                     productsData.map((item) => (
-                                        <ProductCard xs={12} sm={12} className={classes.paper} item={item} key={item.id} />
+                                        <ProductCard xs={12} sm={12} className={classes.paper} item={item} key={item.id} types={types} />
                                         ))
                                     }
                                 </Grid>

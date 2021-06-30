@@ -38,11 +38,9 @@ class GameController {
 
     async delete(req,res) {
         const {id} = req.params
-        const game = await Game.destroy(
-            {
+        const game = await Game.destroy({
                 where: {id}
-            },
-        )
+            })
         return res.json(game)
     }
 

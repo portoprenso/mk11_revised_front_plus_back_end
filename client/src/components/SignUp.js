@@ -2,13 +2,14 @@ import React, { useRef, useState} from 'react';
 import { Card, Button, Form, Alert } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext'
+import { registration } from '../helpers/functions';
 import './Authorisation.css'
 
 const SignUp = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup, currentUser, logout } = useAuth()
+    const { currentUser, logout } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -18,11 +19,11 @@ const SignUp = () => {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Пароли не совпадают')
         }
-
         try {
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            let data = await registration(emailRef.current.value, passwordRef.current.value)
+            console.log(data)
             history.push('/')
         } catch(error){
             console.log(error);

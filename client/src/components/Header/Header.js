@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MKLogo from "../../assets/mortal-kombat-11-vector-logo.svg";
@@ -9,10 +9,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import { connect } from "react-redux";
 import { JSON_API } from "../../helpers/static";
 import axios from "axios";
+import { check, getDecodedToken } from "../../helpers/functions";
 
 const mapStateToProps = (state) => {
     return {
         productsData: state.productReducer.productsData,
+        user: state.authReducer.user
     };
 };
 
@@ -38,6 +40,21 @@ const mapDispatchToProps = (dispatch) => ({
             payload: res,
         });
     },
+    checkGetDecodedToken: async() => {
+        const data = await getDecodedToken()
+        if(!data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: null
+            })
+        }
+        if(data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: data
+            })
+        }
+    }
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -82,9 +99,14 @@ const useStyles = makeStyles((theme) => ({
 function Header(store) {
     const classes = useStyles();
     let history = useHistory();
-    const { currentUser } = useAuth();
+    // const { currentUser } = useAuth();
     const [searchValue, setSearchValue] = useState(getSearchValue());
-    const { nulifyDataLimit, getProductsData } = store;
+    const { nulifyDataLimit, getProductsData, checkGetDecodedToken, user } = store;
+
+    useEffect(() => {
+        // getUser()
+        checkGetDecodedToken()
+    }, [])
 
     function getSearchValue(e) {
         const search = new URLSearchParams(history.location.search);
@@ -116,9 +138,9 @@ function Header(store) {
                             <Link exact to="/roster">
                                 <li className="ul__item">Roster</li>
                             </Link>
-                            <Link exact to="/chat">
+                            {/* <Link exact to="/chat">
                                 <li className="ul__item">Чат</li>
-                            </Link>
+                            </Link> */}
                             <li className="ul__item">Сообщество</li>
                             <Link exact to="/gallery">
                                 <li className="ul__item">Галлерея</li>
@@ -129,7 +151,7 @@ function Header(store) {
                             >
                                 Продукция
                             </li>
-                            {currentUser ? (
+                            {user ? (
                                 <Link exact to="/profile">
                                     <li className="ul__item">
                                         <button className="btn-buy">
@@ -173,9 +195,9 @@ function Header(store) {
                     <Link exact to="/roster">
                         <li className="ul__item">Roster</li>
                     </Link>
-                    <Link exact to="/chat">
+                    {/* <Link exact to="/chat">
                         <li className="ul__item">Чат</li>
-                    </Link>
+                    </Link> */}
                     <Link exact to="/test_prod">
                         <li className="ul__item">Тестовая витрина</li>
                     </Link>
@@ -185,7 +207,7 @@ function Header(store) {
                     <li onClick={() => nulifyDataLimit(history)} className="ul__item">
                         Продукция
                     </li>
-                    {currentUser ? (
+                    {user ? (
                         <Link exact to="/profile">
                             <li className="ul__item">
                                 <button className="btn-buy">Мой профиль</button>

@@ -97,11 +97,11 @@ function App(store) {
                                         path="/update-profile"
                                         component={UpdateProfile}
                                     />
-                                    <PrivateRoute
+                                    {/* <PrivateRoute
                                         exact
                                         path="/chat/"
                                         component={Chat}
-                                    />
+                                    /> */}
                                     <PrivateRoute
                                         exact
                                         path="/buy/"

@@ -20,7 +20,7 @@ import ProductCard from "../StoreBlock/StorePage/ProductCard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { connect } from "react-redux";
 import { JSON_API, NODE_API } from "../../helpers/static";
-import { $host, fetchBrands, fetchTypes } from "../../helpers/functions";
+import { $authHost, $host, check, fetchBrands, fetchTypes } from "../../helpers/functions";
 
 const mapStateToProps = (state) => {
     return {
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
     addNewProduct: async (newGame, story, getProductsData, store) => {
         console.log(newGame)
-        const {data} = await $host.post("api/game", newGame);
+        const {data} = await $authHost.post("api/game", newGame);
         getProductsData(story, store.dataLimit);
         alert("Новый продукт создан!");
         return data
@@ -101,8 +101,11 @@ const ProfilePage = (store) => {
     const [brands, setBrands] = useState(null)
     const [selectedTypes, setSelectedTypes] = useState(null)
     const [selectedBrands, setSelectedBrands] = useState(null)
-    const [info, setInfo] = useState(null)
-    const { currentUser, logout } = useAuth();
+    const [user, setUser] = useState(null)
+    const [imgState, setImgState] = useState(null)
+    const [imgLargeState, setImgLargeState] = useState(null)
+    const { logout } = useAuth();
+    console.log(user)
     const {
         getProductsData,
         productsData,
@@ -135,14 +138,15 @@ const ProfilePage = (store) => {
     const imageLargeRef = useRef(null);
     const countInStockRef = useRef();
 
-    console.log(currentUser);
+    console.log(user);
     console.log(selectedBrands)
     console.log(selectedTypes)
 
     useEffect(() => {
-        getProductsData(history, store.dataLimit);
+        // getProductsData(history, store.dataLimit);
         fetchBrands().then(data => setBrands(data))
         fetchTypes().then(data => setTypes(data))
+        check().then(data => setUser(data))
     }, [history]);
     console.log(brands)
     console.log(types)
@@ -152,15 +156,15 @@ const ProfilePage = (store) => {
         console.log(data);
 
         if (data.favorites.length > 0) {
-            if (data.favorites.includes(currentUser.email)) {
+            if (data.favorites.includes(user.email)) {
                 data.favorites = data.favorites.filter(
-                    (elem) => elem !== currentUser.email
+                    (elem) => elem !== user.email
                 );
             } else {
-                data.favorites.push(currentUser.email);
+                data.favorites.push(user.email);
             }
         } else {
-            data.favorites.push(currentUser.email);
+            data.favorites.push(user.email);
         }
 
         await editProduct(id, data, history, getProductsData, store);
@@ -251,6 +255,17 @@ const ProfilePage = (store) => {
         setPerc(discount);
     }
 
+      const showImage = (event) => {
+        setImgState({
+          file: URL.createObjectURL(event.target.files[0])
+        })
+      }
+      const showImageLarge = (event) => {
+        setImgLargeState({
+          file: URL.createObjectURL(event.target.files[0])
+        })
+      }
+
     return (
         <>
             <Header />
@@ -273,19 +288,19 @@ const ProfilePage = (store) => {
                                     </div>
                                 </div>
                                 <div className="btn">
-                                    <img
+                                    {/* <img
                                         className="profilePage__user-image"
                                         src={currentUser.photoURL}
                                         alt="some text here"
                                     />
                                     <Button className="profilePage__user-name">
                                         {currentUser.displayName}
-                                    </Button>
+                                    </Button> */}
                                     <Button
                                         className="profile-page__emailInfo-button"
-                                        onClick={() => {
-                                            console.log(productsData);
-                                        }}
+                                        // onClick={() => {
+                                        //     console.log(productsData);
+                                        // }}
                                     >
                                         {error && (
                                             <Alert variant="danger">
@@ -293,7 +308,7 @@ const ProfilePage = (store) => {
                                             </Alert>
                                         )}
                                         <strong>Email:</strong>{" "}
-                                        {currentUser.email}
+                                        {user && user.email}
                                     </Button>
                                     <ButtonGroup className="dashBoard__buttongroup">
                                         <Button
@@ -335,10 +350,10 @@ const ProfilePage = (store) => {
                         >
                             Избранное
                         </h2>
-                        <div>
+                        {/* <div>
                             {productsData.map((item) => {
                                 if (
-                                    item.favorites.includes(currentUser.email)
+                                    item.favorites.includes(user.email)
                                 ) {
                                     return (
                                         <div className="fav-block__item">
@@ -361,7 +376,7 @@ const ProfilePage = (store) => {
                                     );
                                 }
                             })}
-                        </div>
+                        </div> */}
                     </div>
                     <div className="profilePage__addHero__inputs">
                         <div className="profilePage__addHero__inputs__container">
@@ -564,11 +579,18 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <input
                                         className="inp-type__input"
+                                        onChange={showImage}
                                         ref={imageRef}
                                         placeholder="Маленькое изображение"
                                         // onChange={() => console.log(imageRef.current.files)}
                                         type="file"
                                     />
+                                    {imageRef.current && imageRef.current.files[0]
+                                    ?
+                                    <img src={imgState.file}/>
+                                    :
+                                    <></>
+                                    }
                                 </Grid>
                                 <Grid className="inp-type__inputContainers">
                                     <Typography variant="h6">
@@ -576,10 +598,18 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <input
                                         className="inp-type__input"
+                                        onChange={showImageLarge}
                                         ref={imageLargeRef}
                                         placeholder="Большое изображение"
                                         type="file"
                                     />
+                                    {imageLargeRef.current && imageLargeRef.current.files[0]
+                                    ?
+                                    <img src={imgLargeState.file}/>
+                                    :
+                                    <></>
+                                    }
+
                                 </Grid>
                                 <Grid className="inp-type__inputContainers">
                                     <Typography variant="h6">
