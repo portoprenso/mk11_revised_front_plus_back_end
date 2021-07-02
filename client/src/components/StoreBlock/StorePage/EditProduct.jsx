@@ -114,10 +114,14 @@ const EditProduct = (store, { name, body }) => {
   const countInStockRef = useRef(null);
 
   useEffect(() => {
-    asd();
+    getShowCaseDetails(id)
     fetchBrands().then(data => setBrands(data));
     fetchTypes().then(data => setTypes(data));
   }, [nameRef.current]);
+
+  useEffect(() => {
+    putData()
+  }, [showCaseDataDetails])
 
   console.log(showCaseDataDetails)
 
@@ -132,15 +136,8 @@ const EditProduct = (store, { name, body }) => {
       showCaseDataDetails.discountPercent;
       setSelectedBrands(showCaseDataDetails.brandId);
       setSelectedTypes(showCaseDataDetails.typeId);
-      // imageRef.current.value = showCaseDataDetails.image;
-      // imageLargeRef.current.value = showCaseDataDetails.imageLarge;
       countInStockRef.current.value = showCaseDataDetails.countInStock;
     }
-  }
-
-  async function asd() {
-    await getShowCaseDetails(id);
-    await putData();
   }
 
   function calcDiscountpercent(first, second) {
@@ -375,6 +372,8 @@ const EditProduct = (store, { name, body }) => {
                   onClick={() => handleChangeShowCaseDetails()}
                   color="primary"
                   variant="contained"
+                  component={Link}
+                  to="/test_prod"
                 >
                   Сохранить изменения
                 </Button>

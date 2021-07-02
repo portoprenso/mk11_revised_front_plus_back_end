@@ -108,13 +108,13 @@ class GameController {
 
     async getAll(req, res) {
         let {brandId, typeId, _limit, _q, _price_from, _price_to} = req.query
-        console.log(`req.query =`)
-        console.log(req.query)
+        // console.log(`req.query =`)
+        // console.log(req.query)
         // page = page || 1
         _limit = _limit || 9
         // let offset = page * _limit - _limit
         let games;
-        console.log(Op)
+        // console.log(Op)
         if(_q){
             if (!brandId && !typeId) {
                 games = await Game.findAndCountAll({where: {name: {[Op.iLike]: `%${_q}%`}}, _limit})

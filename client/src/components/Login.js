@@ -66,9 +66,9 @@ const Login = () => {
                         <Button disabled={loading} className="w-100 btn-warning" type="submit">Войти по Email</Button>
                     </Form>
                         {/* <Button onClick={handleSubmitWithGoogle} disabled={loading} className="w-100 btn-warning" type="submit">Войти с помощью Google</Button> */}
-                    <div className="w-100 text-center mt-3">
+                    {/* <div className="w-100 text-center mt-3">
                         <Link to='/forgot-password'>Забыли пароль?</Link>
-                    </div>
+                    </div> */}
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

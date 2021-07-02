@@ -82,12 +82,17 @@ const check = async () => {
 
 const getDecodedToken = async () => {
   const data = await localStorage.getItem("token")
+  console.log(data)
   if (data){
     return jwt_decode(data)
   }
   else {
-    return "there is no token"
+    return ""
   }
+}
+
+const destroyToken = () => {
+  localStorage.removeItem("token")
 }
 
 export {
@@ -103,5 +108,6 @@ export {
   check,
   login,
   registration,
-  getDecodedToken
+  getDecodedToken,
+  destroyToken
 };

@@ -151,10 +151,10 @@ function Header(store) {
                             <Link exact to="/roster">
                                 <li className="ul__item">Roster</li>
                             </Link>
-                            {/* <Link exact to="/chat">
-                                <li className="ul__item">Чат</li>
-                            </Link> */}
-                            <li className="ul__item">Сообщество</li>
+                            <Link exact to="/test_prod">
+                                <li className="ul__item">Тестовая витрина</li>
+                            </Link>
+
                             <Link exact to="/gallery">
                                 <li className="ul__item">Галлерея</li>
                             </Link>
