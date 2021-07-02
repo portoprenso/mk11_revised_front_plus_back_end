@@ -1,9 +1,10 @@
 const Router = require('express')
 const router = new Router()
-const CommentController = require('../controllers/commentController')
-const checkRole = require('../middleware/checkRoleMiddleware')
+const commentController = require('../controllers/commentController')
+// const checkRole = require('../middleware/checkRoleMiddleware')
 
-router.post('/', checkRole("ADMIN"), brandController.create)
-router.get('/', brandController.getAll)
+router.post('/', commentController.create)
+router.get('/:id', commentController.getAll)
+router.delete('/:id', commentController.delete)
 
 module.exports = router

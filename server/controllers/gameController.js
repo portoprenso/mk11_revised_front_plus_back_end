@@ -2,6 +2,12 @@ const uuid = require('uuid')
 const path = require('path');
 const {Game, GameInfo} = require('../models/models')
 const ApiError = require('../error/ApiError');
+const bodyParser = require('body-parser');
+const url = require('url');
+const querystring = require('querystring');
+// const { like } = require('sequelize');
+const sequelize = require('sequelize')
+const Op = sequelize.Op;
 
 class GameController {
     async create(req, res, next) {
@@ -52,8 +58,6 @@ class GameController {
         try {
           const { id } = req.params;
           const { name, price, brandId, typeId, countInStock, oldPrice, discountPercent, info } = req.body;
-        //   console.log("update req.body " + req.body)
-        //   console.log("update req.files " + req.files)
         if(req.files){
             const {image} = req.files
             const fileName = uuid.v4() + ".jpg"
@@ -76,12 +80,8 @@ class GameController {
             );
 
         }
-        //   console.log('string before if info')
-        //   console.log(info)
           if(info) {
             let info2 = JSON.parse(info)
-            // console.log(`String after if info${info}`)
-            // console.log(`String after if info${info2}`)
             GameInfo.update({
                 title: info2.title,
                 description: info2.description,
@@ -107,23 +107,79 @@ class GameController {
     }
 
     async getAll(req, res) {
-        let {brandId, typeId, limit, page} = req.query
-        page = page || 1
-        limit = limit || 9
-        let offset = page * limit - limit
+        let {brandId, typeId, _limit, _q, _price_from, _price_to} = req.query
+        console.log(`req.query =`)
+        console.log(req.query)
+        // page = page || 1
+        _limit = _limit || 9
+        // let offset = page * _limit - _limit
         let games;
-        if (!brandId && !typeId) {
-            games = await Game.findAndCountAll({limit, offset})
+        console.log(Op)
+        if(_q){
+            if (!brandId && !typeId) {
+                games = await Game.findAndCountAll({where: {name: {[Op.iLike]: `%${_q}%`}}, _limit})
+            }
+            if (brandId && !typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, brandId}, _limit})
+            }
+            if (!brandId && typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, typeId}, _limit})
+            }
+            if (brandId && typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, typeId, brandId}, _limit})
+            }
+        } else if(_q && _price_from && _price_to){
+            if (!brandId && !typeId) {
+                games = await Game.findAndCountAll({where: {name: {[Op.iLike]: `%${_q}%`}, price: {[Op.between]: [_price_from, _price_to]}}, _limit})
+            }
+            if (brandId && !typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, price: {[Op.between]: [_price_from, _price_to]}, brandId}, _limit})
+            }
+            if (!brandId && typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, price: {[Op.between]: [_price_from, _price_to]}, typeId}, _limit})
+            }
+            if (brandId && typeId) {
+                games = await Game.findAndCountAll({where:{name: {[Op.iLike]: `%${_q}%`}, price: {[Op.between]: [_price_from, _price_to]}, typeId, brandId}, _limit})
+            }
+        } else if(!_q && _price_from && _price_to) {
+            if (!brandId && !typeId) {
+                games = await Game.findAndCountAll({where: {price: {[Op.between]: [_price_from, _price_to]}}, _limit})
+            }
+            if (brandId && !typeId) {
+                games = await Game.findAndCountAll({where:{price: {[Op.between]: [_price_from, _price_to]}, brandId}, _limit})
+            }
+            if (!brandId && typeId) {
+                games = await Game.findAndCountAll({where:{price: {[Op.between]: [_price_from, _price_to]}, typeId}, _limit})
+            }
+            if (brandId && typeId) {
+                games = await Game.findAndCountAll({where:{price: {[Op.between]: [_price_from, _price_to]}, typeId, brandId}, _limit})
+            }
+        } else {
+            if (!brandId && !typeId) {
+                games = await Game.findAndCountAll({where: {}, _limit})
+            }
+            if (brandId && !typeId) {
+                games = await Game.findAndCountAll({where:{brandId}, _limit})
+            }
+            if (!brandId && typeId) {
+                games = await Game.findAndCountAll({where:{typeId}, _limit})
+            }
+            if (brandId && typeId) {
+                games = await Game.findAndCountAll({where:{typeId, brandId}, _limit})
+            }
         }
-        if (brandId && !typeId) {
-            games = await Game.findAndCountAll({where:{brandId}, limit, offset})
-        }
-        if (!brandId && typeId) {
-            games = await Game.findAndCountAll({where:{typeId}, limit, offset})
-        }
-        if (brandId && typeId) {
-            games = await Game.findAndCountAll({where:{typeId, brandId}, limit, offset})
-        }
+        // if (!brandId && !typeId) {
+        //     games = await Game.findAndCountAll({where: {}, _limit, offset})
+        // }
+        // if (brandId && !typeId) {
+        //     games = await Game.findAndCountAll({where:{brandId}, _limit, offset})
+        // }
+        // if (!brandId && typeId) {
+        //     games = await Game.findAndCountAll({where:{typeId}, _limit, offset})
+        // }
+        // if (brandId && typeId) {
+        //     games = await Game.findAndCountAll({where:{typeId, brandId}, _limit, offset})
+        // }
         return res.json(games)
     }
 

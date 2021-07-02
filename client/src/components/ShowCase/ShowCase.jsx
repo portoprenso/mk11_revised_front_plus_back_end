@@ -7,6 +7,8 @@ import { Row, Card } from "react-bootstrap";
 import { $host, check, fetchTypes } from "../../helpers/functions";
 import { useEffect } from "react";
 import ProductCardApi from "../StoreBlock/StorePage/ProductCardApi";
+import { useHistory } from "react-router-dom";
+import ShowCaseSideBar from './../ShowCaseSideBar/ShowCaseSideBar';
 
 
 const mapStateToProps = (state) => {
@@ -17,9 +19,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    getShowCaseData: async () => {
+    getShowCaseData: async (history, datalimit) => {
+        const search = new URLSearchParams(history.location.search);
+        search.set("_limit", datalimit);
+        history.push(`${history.location.pathname}?${search.toString()}`);
+        // console.log(datalimit)
+        // console.log(window.location.search)
         let {data} = await $host.get(
-            `api/game/`
+            `api/game/?_limit=${datalimit}&${window.location.search}`
         );
         // console.log(data.rows)
         dispatch({
@@ -42,11 +49,13 @@ const mapDispatchToProps = (dispatch) => ({
 const ShowCase = (store) => {
     const [types, setTypes] = useState()
     const { showCaseData, getShowCaseData, user } = store
-    console.log(user)
+    const history = useHistory()
+    // console.log(user)
     // const [ loaded, setLoaded ] = useState(false)
 
+
     useEffect(() => {
-        getShowCaseData()
+        getShowCaseData(history, 8)
         fetchTypes().then(data => setTypes(data))
         // getDecodedToken().then(data => console.log(data))
         // showCaseData ? setLoaded(true) : console.log('asd')
@@ -63,6 +72,7 @@ const ShowCase = (store) => {
                             <ProductCardApi game={game} types={types} user={user}/>
                         ))}
                     </Row>
+                    <ShowCaseSideBar />
                 </div>
                 <div className="products__categories">asd</div>
             </div>

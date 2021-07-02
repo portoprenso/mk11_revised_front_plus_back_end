@@ -64,10 +64,8 @@ const mapDispatchToProps = (dispatch) => ({
   //   await axios.patch(`${JSON_API}/products/${id}`, newObj);
   //   getShowCaseData(story);
   // },
-
   editShowCaseDetails: async (id, newObj) => {
     await $authHost.patch(`/api/game/${id}`, newObj);
-    // getShowCaseData(story);
   },
   // editShowCaseDetails: async (id, newObj, story, getShowCaseData) => {
   //   await $host.patch(`/game/${id}`, newObj);

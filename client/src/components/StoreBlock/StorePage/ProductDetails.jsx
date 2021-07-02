@@ -10,7 +10,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { connect } from 'react-redux';
-import { $host, fetchBrands, fetchOneGameInfo, fetchTypes } from '../../../helpers/functions';
+import { $host, fetchBrands, fetchOneGameInfo, fetchTypes, getDecodedToken } from '../../../helpers/functions';
 
 const mapStateToProps = (state) => {
     return{
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
                 type: 'GET_SHOWCASE_DATA_DETAILS',
                 payload: data
             })
-            console.log(data)
+            // console.log(data)
         }
     }
 }
@@ -37,23 +37,48 @@ const ProductDetails = (store) => {
     const { id } = useParams()
     const { addProductToCart, editProduct } = useProducts()
     const { getShowCaseDetails, showCaseDataDetails } = store
-    const { currentUser } = useAuth()
+    // const { currentUser } = useAuth()
     let commentRef = useRef(null)
     const [types, setTypes] = useState()
     const [brands, setBrands] = useState()
     const [info, setInfo] = useState()
+    const [user, setUser] = useState(null)
+    const [commentData, setCommentData] = useState(null)
+
+    async function getCommentData(id) {
+        const {data} = await $host.get(`${process.env.REACT_APP_API_URL}api/comment/${id}`)
+        console.log(data)
+        return data
+    }
+
+    async function getUserData(){
+        const userData = await getDecodedToken()
+        console.log(userData)
+        setUser(userData)
+    }
+
+
+    async function commentsFinished(id){
+        const data = await getCommentData(id)
+        setCommentData(data)
+    }
     
+    async function deleteComment(commentId, id){
+        console.log(`api/comment/${commentId}`)
+        const data = await $host.delete(`api/comment/${commentId}`)
+        commentsFinished(id)
+    }
+
     useEffect(() => {
         getShowCaseDetails(id);
         fetchTypes().then(data => setTypes(data));
         fetchBrands().then(data => setBrands(data));
         fetchOneGameInfo(id).then(data => setInfo(data.info[0]))
+        commentsFinished(id)
+        getUserData()
     }, [])
+    
 
-    console.log(showCaseDataDetails)
-    console.log(types)
-    console.log(brands)
-    console.log(info)
     
     const useStyles = makeStyles((theme) => ({
         main_img:{
@@ -72,13 +97,12 @@ const ProductDetails = (store) => {
     }));
 
     // function showCommentSection(){
-    //     // console.log(productDetails)
     //     return(
-    //         productDetails.commentary ? (productDetails.commentary.map((item) => (
-    //             <div id={item.time}>
-    //                 <span>{item.email} ({new Date(item.time).toLocaleString()})</span>
+    //         commentData ? (commentData.map((item) => (
+    //             <div id={item.createdAt}>
+    //                 <span>{item.email} {item.createdAt}</span>
     //                 <p>{item.text}</p>
-    //                 {currentUser && item.email===currentUser.email ? 
+    //                 {user && item.userId===currentUser.email ? 
     //                 (
     //                     <Button onClick={() => handleDeleteComment(id, item.time)}>Удалить комментарий</Button>
     //                 ) 
@@ -116,22 +140,18 @@ const ProductDetails = (store) => {
     //     )
     // }
 
-    // async function handleAddComment(id) {
-    //     let newObj = {
-    //       ...productDetails
-    //     };
-        
-    //     let newComment = {
-    //         text: commentRef.current.value,
-    //         email: currentUser.email,
-    //         time: Date.now()
-    //     }
+    async function handleAddComment(id, userId, userEmail) {
+        let newComment = {
+            text: commentRef.current.value,
+            userId: userId,
+            gameId: id,
+            userEmail: userEmail,
+        }
 
-    //         newObj.commentary.push(newComment)
-
-    //     await editProduct(id, newObj, history);
-    //     commentRef.current.value = null;
-    //   }
+        const data = $host.post('api/comment', newComment)
+        commentsFinished(id)
+        commentRef.current.value = null;
+      }
 
     // async function handleAddToFav(id) {
     //     let newObj = {
@@ -263,7 +283,7 @@ const ProductDetails = (store) => {
                             </div>
                             <div className="two_btn">
                             
-                            {currentUser ? (
+                            {/* {currentUser ? (
                             <button 
                             // onClick={() => handleAddToFav(id)}
                             className="fill"
@@ -286,23 +306,23 @@ const ProductDetails = (store) => {
                             </button>
                             </Link>)
                         
-                        }
+                        } */}
                             {/* <button className="fill">Поставить Лайк</button> */}
-                            {currentUser ? (
+                            {/* {currentUser ? (
                                 <Button
-                                // onClick={() => handleLike(id)}
+                                onClick={() => handleLike(id)}
                                 ><FavoriteIcon />
-                                {/* {showLikesCount()} */}
+                                {showLikesCount()}
                                 </Button>
 
                             )
                             :
                             (
                                 <Link exact to="/login"><Button><FavoriteIcon />
-                                {/* {showLikesCount()} */}
+                                 {showLikesCount()}
                                 </Button></Link>
                             )
-                            }
+                            } */}
                             </div>
                         </div>
                     
@@ -316,13 +336,21 @@ const ProductDetails = (store) => {
                     </div>
                     <div className="nakonecto2">
                         <h2>Комментарии</h2>
-                        {/* { productDetails.commentary.map((item) => (
-                            <div>
-                                {item.email}
-                            </div>
-                            // console.log(item)
-                        )
-                        )} */}
+                        {commentData && commentData.map((comment) => (
+                        <div id={comment.createdAt}>
+                            <span>{comment.userEmail} {comment.createdAt}</span>
+                            <p>{comment.text}</p>
+                            {user && comment.userId===user.id ? 
+                            (
+                                <Button onClick={() => deleteComment(comment.id, id)}>Удалить комментарий</Button>
+                            ) 
+                            :
+                            (<></>)
+                            }
+                            <hr/>
+                        </div>
+                    )
+                        )}
                         {/* {showCommentSection()} */}
                         <TextareaAutosize
                             className="inp-type__input"
@@ -330,7 +358,7 @@ const ProductDetails = (store) => {
                             placeholder="Введите комментарий"
                         />
                         <Button
-                        // onClick={() => handleAddComment(id)}
+                        onClick={() => handleAddComment(id, user.id, user.email)}
                         >Добавить комментарий</Button>
                     </div>
                 </div>

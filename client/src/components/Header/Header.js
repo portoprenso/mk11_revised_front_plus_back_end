@@ -3,18 +3,17 @@ import "./Header.css";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MKLogo from "../../assets/mortal-kombat-11-vector-logo.svg";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from "react-redux";
-import { JSON_API } from "../../helpers/static";
-import axios from "axios";
-import { check, getDecodedToken } from "../../helpers/functions";
+import { $host, getDecodedToken } from "../../helpers/functions";
 
 const mapStateToProps = (state) => {
     return {
         productsData: state.productReducer.productsData,
-        user: state.authReducer.user
+        user: state.authReducer.user,
+        showCaseData: state.productReducer.showCaseData,
+        dataLimit: state.productReducer.dataLimit
     };
 };
 
@@ -27,18 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
         });
         await history.push("/store/");
         window.scrollTo({ top: 0, behavior: "smooth" });
-    },
-    getProductsData: async (history, datalimit) => {
-        const search = new URLSearchParams(history.location.search);
-        search.set("_limit", datalimit);
-        history.push(`${history.location.pathname}?${search.toString()}`);
-        let res = await axios(
-            `${JSON_API}/products/?_limit=${datalimit}&${window.location.search}`
-        );
-        dispatch({
-            type: "GET_PRODUCTS_DATA",
-            payload: res,
-        });
     },
     checkGetDecodedToken: async() => {
         const data = await getDecodedToken()
@@ -54,7 +41,31 @@ const mapDispatchToProps = (dispatch) => ({
                 payload: data
             })
         }
-    }
+    },
+    getShowCaseData: async (history, datalimit) => {
+        const search = new URLSearchParams(history.location.search);
+        search.set("_limit", datalimit);
+        history.push(`${history.location.pathname}?${search.toString()}`);
+        // console.log(datalimit)
+        // console.log(window.location.search)
+        let {data} = await $host.get(
+            `api/game/?_limit=${datalimit}&${window.location.search}`
+        );
+        // console.log(data.rows)
+        dispatch({
+            type: "GET_SHOWCASE_DATA",
+            payload: data.rows
+        });
+    },
+    changeDataLimit: async (story, dataLimit) => {
+        let some = dataLimit;
+        some += 8;
+        dispatch({
+            type: "CHANGE_DATA_LIMIT",
+            payload: some,
+        });
+        // console.log(dataLimit);
+    },
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +112,7 @@ function Header(store) {
     let history = useHistory();
     // const { currentUser } = useAuth();
     const [searchValue, setSearchValue] = useState(getSearchValue());
-    const { nulifyDataLimit, getProductsData, checkGetDecodedToken, user } = store;
+    const { nulifyDataLimit, checkGetDecodedToken, user, getShowCaseData, dataLimit } = store;
 
     useEffect(() => {
         // getUser()
@@ -116,10 +127,12 @@ function Header(store) {
 
     const handleValue = (e) => {
         const search = new URLSearchParams(history.location.search);
-        search.set("q", e.target.value);
+        // console.log(search)
+        // console.log(store.dataLimit)
+        search.set("_q", e.target.value);
         history.push(`${history.location.pathname}?${search.toString()}`);
         setSearchValue(e.target.value);
-        getProductsData(history, store.datalimit);
+        getShowCaseData(history, store.dataLimit);
     };
 
     return (
@@ -169,7 +182,7 @@ function Header(store) {
                                 </Link>
                             )}
 
-                            {history.location.pathname === "/store/" ? (
+                            {history.location.pathname === "/store/" || history.location.pathname === "/test_prod" ? (
                                 <div className={classes.search}>
                                     <div className={classes.searchIcon}>
                                         <SearchIcon />
@@ -221,7 +234,7 @@ function Header(store) {
                         </Link>
                     )}
 
-                    {history.location.pathname === "/store/" ? (
+                    {history.location.pathname === "/store/" || history.location.pathname === "/test_prod" ? (
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
