@@ -16,11 +16,10 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import "./ProfilePage.css";
-import ProductCard from "../StoreBlock/StorePage/ProductCard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { connect } from "react-redux";
 import { JSON_API, NODE_API } from "../../helpers/static";
-import { $host, fetchBrands, fetchTypes } from "../../helpers/functions";
+import { $authHost, $host, check, destroyToken, fetchBrands, fetchTypes, getDecodedToken } from "../../helpers/functions";
 
 const mapStateToProps = (state) => {
     return {
@@ -30,57 +29,29 @@ const mapStateToProps = (state) => {
         paginationPages: state.productReducer.paginationPages,
         cart: state.productReducer.cart,
         dataLimit: state.productReducer.dataLimit,
+        user: state.authReducer.user
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    getProductsData: async (history, dataLimit) => {
-        const search = new URLSearchParams(history.location.search);
-        search.set("_limit", dataLimit);
-        history.push(`${history.location.pathname}?${search.toString()}`);
-        let res = await axios(
-            `${JSON_API}/products/?_limit=${dataLimit}&${window.location.search}`
-        );
-        dispatch({
-            type: "GET_PRODUCTS_DATA",
-            payload: res,
-        });
-    },
     editProduct: async (id, newObj, story, getProductsData, store) => {
         await axios.patch(`${JSON_API}/products/${id}`, newObj);
         getProductsData(story, store.dataLimit);
     },
-    getProductDetails: async (id) => {
-        let { data } = await axios(`${JSON_API}/products/${id}`);
-        dispatch({
-            type: "GET_PRODUCTS_DETAILS",
-            payload: data,
-        });
-    },
-    addNewProduct: async (newGame, story, getProductsData, store) => {
-        console.log(newGame)
-        const {data} = await $host.post("api/game", newGame);
+    addNewGame: async (newGame, story, getProductsData, store) => {
+        // console.log(newGame)
+        const {data} = await $authHost.post("api/game", newGame);
         getProductsData(story, store.dataLimit);
         alert("Новый продукт создан!");
         return data
     },
     getInfoFromApi: async (game) => {
-        console.log(game)
+        // console.log(game)
         const {data} = await $host.get("api/game/", game);
-        console.log(data)
+        // console.log(data)
         return data
     },
 
-    // createDevice: async (device) => {
-    //     const {data} = await $authHost.post('api/device', device)
-    //     return data
-    // }
-    
-    // addNewProduct: async (newGame, story, getProductsData, store) => {
-    //     await axios.post(`${JSON_API}/products`, newGame);
-    //     getProductsData(story, store.dataLimit);
-    //     alert("Новый продукт создан!");
-    // },
     getRosterData: async () => {
         let { data } = await axios(`${JSON_API}/roster`);
         dispatch({
@@ -92,27 +63,47 @@ const mapDispatchToProps = (dispatch) => ({
         await axios.post(`${JSON_API}/roster`, newPerson);
         getRosterData();
     },
+    checkGetDecodedToken: async() => {
+        const data = await getDecodedToken()
+        if(!data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: null
+            })
+        }
+        if(data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: data
+            })
+        }
+    },
 });
 
 const ProfilePage = (store) => {
-    console.log(store);
+    // console.log(store);
     const [error, setError] = useState("");
     const [types, setTypes] = useState(null)
     const [brands, setBrands] = useState(null)
     const [selectedTypes, setSelectedTypes] = useState(null)
     const [selectedBrands, setSelectedBrands] = useState(null)
-    const [info, setInfo] = useState(null)
-    const { currentUser, logout } = useAuth();
+    // const [user, setUser] = useState(null)
+    const [imgState, setImgState] = useState(null)
+    const [imgLargeState, setImgLargeState] = useState(null)
+    const { logout } = useAuth();
+    // console.log(user)
     const {
         getProductsData,
         productsData,
         editProduct,
         getProductDetails,
-        addNewProduct,
+        addNewGame,
         productDetails,
         addNewFighter,
         getRosterData,
-        getInfoFromApi
+        getInfoFromApi,
+        checkGetDecodedToken,
+        user
     } = store;
     const [perc, setPerc] = useState(0);
     const history = useHistory();
@@ -123,55 +114,53 @@ const ProfilePage = (store) => {
     const littlePicRef = useRef();
     const videoRef = useRef();
     
-    // addNewProduct refs ↓
+    // addNewGame refs ↓
     const nameRef = useRef();
     const descriptionRef = useRef();
     const priceRef = useRef();
     const oldPriceRef = useRef();
     const discountPercentPriceRef = useRef();
-    const authorRef = useRef();
-    const categoryRef = useRef();
     const imageRef = useRef(null);
     const imageLargeRef = useRef(null);
     const countInStockRef = useRef();
 
-    console.log(currentUser);
-    console.log(selectedBrands)
-    console.log(selectedTypes)
+    console.log(user);
+    // console.log(selectedBrands)
+    // console.log(selectedTypes)
 
     useEffect(() => {
-        getProductsData(history, store.dataLimit);
         fetchBrands().then(data => setBrands(data))
         fetchTypes().then(data => setTypes(data))
+        checkGetDecodedToken()
     }, [history]);
-    console.log(brands)
-    console.log(types)
+    // console.log(brands)
+    // console.log(types)
 
     async function handleAddToFav(id) {
         let { data } = await axios(`http://localhost:8000/products/${id}`);
         console.log(data);
 
         if (data.favorites.length > 0) {
-            if (data.favorites.includes(currentUser.email)) {
+            if (data.favorites.includes(user.email)) {
                 data.favorites = data.favorites.filter(
-                    (elem) => elem !== currentUser.email
+                    (elem) => elem !== user.email
                 );
             } else {
-                data.favorites.push(currentUser.email);
+                data.favorites.push(user.email);
             }
         } else {
-            data.favorites.push(currentUser.email);
+            data.favorites.push(user.email);
         }
 
         await editProduct(id, data, history, getProductsData, store);
         await getProductDetails(id);
-        console.log(productDetails.favorites);
+        // console.log(productDetails.favorites);
     }
 
     async function handleLogout() {
         setError("");
         try {
-            await logout();
+            await destroyToken();
             history.push("/");
         } catch (error) {
             console.log(error);
@@ -188,7 +177,7 @@ const ProfilePage = (store) => {
             littlePic: littlePicRef.current.value,
             video: videoRef.current.value,
         };
-        console.log(newObj);
+        // console.log(newObj);
         await addNewFighter(newObj, getRosterData);
         nameRef.current.value = null;
         phraseRef.current.value = null;
@@ -233,7 +222,7 @@ const ProfilePage = (store) => {
             //     imageLarge: imageLargeRef.current.value,
             // }
         // };
-        await addNewProduct(newObj, history, getProductsData, store);
+        await addNewGame(newObj, history, getProductsData, store);
         // nameRef.current.value = null;
         // descriptionRef.current.value = null;
         // priceRef.current.value = null;
@@ -250,6 +239,17 @@ const ProfilePage = (store) => {
         let discount = Math.ceil(100 - (first / second) * 100);
         setPerc(discount);
     }
+
+      const showImage = (event) => {
+        setImgState({
+          file: URL.createObjectURL(event.target.files[0])
+        })
+      }
+      const showImageLarge = (event) => {
+        setImgLargeState({
+          file: URL.createObjectURL(event.target.files[0])
+        })
+      }
 
     return (
         <>
@@ -273,19 +273,19 @@ const ProfilePage = (store) => {
                                     </div>
                                 </div>
                                 <div className="btn">
-                                    <img
+                                    {/* <img
                                         className="profilePage__user-image"
                                         src={currentUser.photoURL}
                                         alt="some text here"
                                     />
                                     <Button className="profilePage__user-name">
                                         {currentUser.displayName}
-                                    </Button>
+                                    </Button> */}
                                     <Button
                                         className="profile-page__emailInfo-button"
-                                        onClick={() => {
-                                            console.log(productsData);
-                                        }}
+                                        // onClick={() => {
+                                        //     console.log(productsData);
+                                        // }}
                                     >
                                         {error && (
                                             <Alert variant="danger">
@@ -293,17 +293,17 @@ const ProfilePage = (store) => {
                                             </Alert>
                                         )}
                                         <strong>Email:</strong>{" "}
-                                        {currentUser.email}
+                                        {user && user.email}
                                     </Button>
                                     <ButtonGroup className="dashBoard__buttongroup">
-                                        <Button
+                                        {/* <Button
                                             color="primary"
                                             variant="contained"
                                         >
                                             <Link to="/update-profile">
                                                 Ред. профиль
                                             </Link>
-                                        </Button>
+                                        </Button> */}
                                         <Button
                                             color="primary"
                                             variant="contained"
@@ -335,10 +335,10 @@ const ProfilePage = (store) => {
                         >
                             Избранное
                         </h2>
-                        <div>
+                        {/* <div>
                             {productsData.map((item) => {
                                 if (
-                                    item.favorites.includes(currentUser.email)
+                                    item.favorites.includes(user.email)
                                 ) {
                                     return (
                                         <div className="fav-block__item">
@@ -361,7 +361,7 @@ const ProfilePage = (store) => {
                                     );
                                 }
                             })}
-                        </div>
+                        </div> */}
                     </div>
                     <div className="profilePage__addHero__inputs">
                         <div className="profilePage__addHero__inputs__container">
@@ -564,11 +564,18 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <input
                                         className="inp-type__input"
+                                        onChange={showImage}
                                         ref={imageRef}
                                         placeholder="Маленькое изображение"
                                         // onChange={() => console.log(imageRef.current.files)}
                                         type="file"
                                     />
+                                    {imageRef.current && imageRef.current.files[0]
+                                    ?
+                                    <img src={imgState.file}/>
+                                    :
+                                    <></>
+                                    }
                                 </Grid>
                                 <Grid className="inp-type__inputContainers">
                                     <Typography variant="h6">
@@ -576,10 +583,18 @@ const ProfilePage = (store) => {
                                     </Typography>
                                     <input
                                         className="inp-type__input"
+                                        onChange={showImageLarge}
                                         ref={imageLargeRef}
                                         placeholder="Большое изображение"
                                         type="file"
                                     />
+                                    {imageLargeRef.current && imageLargeRef.current.files[0]
+                                    ?
+                                    <img src={imgLargeState.file}/>
+                                    :
+                                    <></>
+                                    }
+
                                 </Grid>
                                 <Grid className="inp-type__inputContainers">
                                     <Typography variant="h6">

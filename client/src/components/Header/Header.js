@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MKLogo from "../../assets/mortal-kombat-11-vector-logo.svg";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from "react-redux";
-import { JSON_API } from "../../helpers/static";
-import axios from "axios";
+import { $host, getDecodedToken } from "../../helpers/functions";
 
 const mapStateToProps = (state) => {
     return {
         productsData: state.productReducer.productsData,
+        user: state.authReducer.user,
+        showCaseData: state.productReducer.showCaseData,
+        dataLimit: state.productReducer.dataLimit
     };
 };
 
@@ -26,17 +27,44 @@ const mapDispatchToProps = (dispatch) => ({
         await history.push("/store/");
         window.scrollTo({ top: 0, behavior: "smooth" });
     },
-    getProductsData: async (history, datalimit) => {
+    checkGetDecodedToken: async() => {
+        const data = await getDecodedToken()
+        if(!data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: null
+            })
+        }
+        if(data){
+            dispatch({
+                type: "GET_CURRENT_USER",
+                payload: data
+            })
+        }
+    },
+    getShowCaseData: async (history, datalimit) => {
         const search = new URLSearchParams(history.location.search);
         search.set("_limit", datalimit);
         history.push(`${history.location.pathname}?${search.toString()}`);
-        let res = await axios(
-            `${JSON_API}/products/?_limit=${datalimit}&${window.location.search}`
+        // console.log(datalimit)
+        // console.log(window.location.search)
+        let {data} = await $host.get(
+            `api/game/?_limit=${datalimit}&${window.location.search}`
         );
+        // console.log(data.rows)
         dispatch({
-            type: "GET_PRODUCTS_DATA",
-            payload: res,
+            type: "GET_SHOWCASE_DATA",
+            payload: data.rows
         });
+    },
+    changeDataLimit: async (story, dataLimit) => {
+        let some = dataLimit;
+        some += 8;
+        dispatch({
+            type: "CHANGE_DATA_LIMIT",
+            payload: some,
+        });
+        // console.log(dataLimit);
     },
 });
 
@@ -82,9 +110,14 @@ const useStyles = makeStyles((theme) => ({
 function Header(store) {
     const classes = useStyles();
     let history = useHistory();
-    const { currentUser } = useAuth();
+    // const { currentUser } = useAuth();
     const [searchValue, setSearchValue] = useState(getSearchValue());
-    const { nulifyDataLimit, getProductsData } = store;
+    const { nulifyDataLimit, checkGetDecodedToken, user, getShowCaseData, dataLimit } = store;
+
+    useEffect(() => {
+        // getUser()
+        checkGetDecodedToken()
+    }, [])
 
     function getSearchValue(e) {
         const search = new URLSearchParams(history.location.search);
@@ -94,10 +127,12 @@ function Header(store) {
 
     const handleValue = (e) => {
         const search = new URLSearchParams(history.location.search);
-        search.set("q", e.target.value);
+        // console.log(search)
+        // console.log(store.dataLimit)
+        search.set("_q", e.target.value);
         history.push(`${history.location.pathname}?${search.toString()}`);
         setSearchValue(e.target.value);
-        getProductsData(history, store.datalimit);
+        getShowCaseData(history, store.dataLimit);
     };
 
     return (
@@ -116,10 +151,10 @@ function Header(store) {
                             <Link exact to="/roster">
                                 <li className="ul__item">Roster</li>
                             </Link>
-                            <Link exact to="/chat">
-                                <li className="ul__item">Чат</li>
+                            <Link exact to="/test_prod">
+                                <li className="ul__item">Тестовая витрина</li>
                             </Link>
-                            <li className="ul__item">Сообщество</li>
+
                             <Link exact to="/gallery">
                                 <li className="ul__item">Галлерея</li>
                             </Link>
@@ -129,7 +164,7 @@ function Header(store) {
                             >
                                 Продукция
                             </li>
-                            {currentUser ? (
+                            {user ? (
                                 <Link exact to="/profile">
                                     <li className="ul__item">
                                         <button className="btn-buy">
@@ -147,7 +182,7 @@ function Header(store) {
                                 </Link>
                             )}
 
-                            {history.location.pathname === "/store/" ? (
+                            {history.location.pathname === "/store/" || history.location.pathname === "/test_prod" ? (
                                 <div className={classes.search}>
                                     <div className={classes.searchIcon}>
                                         <SearchIcon />
@@ -173,9 +208,9 @@ function Header(store) {
                     <Link exact to="/roster">
                         <li className="ul__item">Roster</li>
                     </Link>
-                    <Link exact to="/chat">
+                    {/* <Link exact to="/chat">
                         <li className="ul__item">Чат</li>
-                    </Link>
+                    </Link> */}
                     <Link exact to="/test_prod">
                         <li className="ul__item">Тестовая витрина</li>
                     </Link>
@@ -185,7 +220,7 @@ function Header(store) {
                     <li onClick={() => nulifyDataLimit(history)} className="ul__item">
                         Продукция
                     </li>
-                    {currentUser ? (
+                    {user ? (
                         <Link exact to="/profile">
                             <li className="ul__item">
                                 <button className="btn-buy">Мой профиль</button>
@@ -199,7 +234,7 @@ function Header(store) {
                         </Link>
                     )}
 
-                    {history.location.pathname === "/store/" ? (
+                    {history.location.pathname === "/store/" || history.location.pathname === "/test_prod" ? (
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />

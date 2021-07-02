@@ -2,12 +2,15 @@ import React, { useRef, useState} from 'react';
 import { Card, Button, Form, Alert } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext'
+import { $authHost, $host } from '../helpers/functions';
 import './Authorisation.css'
+import { login } from '../helpers/functions'
+
 
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login, loginWithGoogle, currentUser, logout } = useAuth()
+    const { loginWithGoogle, currentUser, logout } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -16,7 +19,8 @@ const Login = () => {
         try {
             setError('')
             setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value)
+            let data = await login(emailRef.current.value, passwordRef.current.value)
+            console.log(data)
             history.push("/")
         } catch(error){
             console.log(error);
@@ -25,20 +29,19 @@ const Login = () => {
         setLoading(false)
     }
 
-    async function handleSubmitWithGoogle() {
-        try {
-            setError('')
-            setLoading(true)
-            loginWithGoogle()
-            history.push("/")
-        } catch(error){
-            console.log(error);
-            setError('Не удалось авторизоваться')
-        }
-        setLoading(false)
-    }
+    // async function handleSubmitWithGoogle() {
+    //     try {
+    //         setError('')
+    //         setLoading(true)
+    //         loginWithGoogle()
+    //         history.push("/")
+    //     } catch(error){
+    //         console.log(error);
+    //         setError('Не удалось авторизоваться')
+    //     }
+    //     setLoading(false)
+    // }
     return (
-        
             <div className="authorisation-hero">
             <Card className="authorisation-card">
                 <Card.Body>
@@ -62,10 +65,10 @@ const Login = () => {
                         </Form.Group>
                         <Button disabled={loading} className="w-100 btn-warning" type="submit">Войти по Email</Button>
                     </Form>
-                        <Button onClick={handleSubmitWithGoogle} disabled={loading} className="w-100 btn-warning" type="submit">Войти с помощью Google</Button>
-                    <div className="w-100 text-center mt-3">
+                        {/* <Button onClick={handleSubmitWithGoogle} disabled={loading} className="w-100 btn-warning" type="submit">Войти с помощью Google</Button> */}
+                    {/* <div className="w-100 text-center mt-3">
                         <Link to='/forgot-password'>Забыли пароль?</Link>
-                    </div>
+                    </div> */}
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

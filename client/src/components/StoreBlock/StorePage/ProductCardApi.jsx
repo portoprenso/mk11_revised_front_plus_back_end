@@ -7,9 +7,8 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import DetailsIcon from "@material-ui/icons/Details";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useAuth } from "../../../contexts/AuthContext";
 import { connect } from "react-redux";
-import { $host, fetchTypes } from "../../../helpers/functions";
+import { $host, check, getDecodedToken } from "../../../helpers/functions";
 
 
 
@@ -42,7 +41,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteProduct: async (id, getShowCaseData) => {
-            let { data } = await $host.delete(`api/game/`);
+            let { data } = await $host.delete(`api/game/${id}`);
+            console.log(data)
             getShowCaseData()
         },
         getShowCaseData: async () => {
@@ -51,24 +51,56 @@ const mapDispatchToProps = (dispatch) => {
                 type: "GET_SHOWCASE_DATA",
                 payload: data.rows,
             });
-        },
+        }
     };
 };
 
 const ProductCardApi = (store) => {
     const history = useHistory();
     const classes = useStyles();
-    const { currentUser } = useAuth();
-    const {deleteProduct, game, getShowCaseData} = store
-    console.log(game);
-    console.log(currentUser)
-    console.log(store);
-    const [types, setTypes] = useState()
-    useEffect(() => {
-        fetchTypes().then(data => setTypes(data))
-    }, [])
+    const { deleteProduct, game, getShowCaseData, types, user } = store
+    // useEffect(() => {
+    //     getDecodedToken().then(data => console.log(data))
+    // }, [])
 
-    console.log(types)
+    // function checkProductInCart(id) {
+    //     let cart = JSON.parse(localStorage.getItem('cart'))
+    //     if (!cart) {
+    //         cart = {
+    //             products: [],
+    //             totalPrice: 0
+    //         }
+    //     }
+    //     let newCart = cart.products.filter(elem => elem.item.id === id)
+    //     return newCart.length > 0 ? true : false
+    // }
+
+    // function addProductToCart (productId) {
+    //     let cart = JSON.parse(localStorage.getItem('cart'))
+    //     if (!cart) {
+    //         cart = {
+    //             products: [],
+    //             totalPrice: 0
+    //         }
+    //     }
+    //     let newProduct = {
+    //         item: productId,
+    //         count: 1,
+    //         subPrice: 0
+    //     }
+    //     let filteredCart = cart.products.filter(elem => elem.item.id === productId)
+    //     if(filteredCart.length > 0) {
+    //         cart.products.filter(elem => elem.item.id !== productId)
+    //     }
+    //     else {
+    //         cart.products.push(newProduct)
+    //     }
+    //     newProduct.subPrice = calcSubPrice(newProduct)
+    //     cart.totalPrice = calcTotalPrice(cart.products)
+    //     localStorage.setItem('cart', JSON.stringify(cart))
+    // }
+
+    // console.log(user)
 
     return (
         <Card className={classes.root}>
@@ -80,7 +112,7 @@ const ProductCardApi = (store) => {
                 title={<Typography variant="h6">{game.name}</Typography>}
                 subheader={
                     <Typography color="textSecondary">
-                        {/* {types && types[game.typeId].name} */}
+                        {types.map((type, index) => {if(type.id === game.typeId) return types[index].name})}
                     </Typography>
                 }
             />
@@ -95,8 +127,8 @@ const ProductCardApi = (store) => {
                 </Link>
             </Typography>
             <Grid xs={1}>
-                {currentUser &&
-                currentUser.uid === "Ti6pFHiMAkdij9f1OlefDNhkwFT2" ? (
+                {user &&
+                user.role === "ADMIN" ? (
                     <div>
                         <Button
                         onClick={() => deleteProduct(game.id, getShowCaseData)}
