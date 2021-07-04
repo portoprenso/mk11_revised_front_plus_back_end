@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,8 +14,8 @@ import { $host, fetchBrands, fetchTypes } from '../../helpers/functions'
 
 const mapStateToProps = (state: any) => {
     return {
-        dataLimit: state.productReducer.dataLimit,
-        showCaseData: state.productReducer.showCaseData
+        dataLimit: state.gameReducer.dataLimit,
+        showCaseData: state.gameReducer.showCaseData
     };
 };
 
@@ -24,20 +24,26 @@ const mapDispatchToProps = (dispatch: any) => ({
         const search = new URLSearchParams(history.location.search);
         search.set("_limit", datalimit);
         history.push(`${history.location.pathname}?${search.toString()}`);
-        // console.log(datalimit)
-        // console.log(window.location.search)
         let {data} = await $host.get(
             `api/game/?_limit=${datalimit}&${window.location.search}`
         );
-        // console.log(data.rows)
         dispatch({
             type: "GET_SHOWCASE_DATA",
             payload: data.rows
         });
     },
+    nulifyDataLimit: async (history: any) => {
+        let some: number = 4;
+        await dispatch({
+            type: "NULIFY_DATA_LIMIT",
+            payload: some,
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
       flexGrow: 1,
       WebkitTextStroke: '0.5px black',
@@ -50,6 +56,13 @@ const useStyles = makeStyles(theme => ({
     }
   }))
 
+interface Store {
+    dataLimit: number | string;
+    showCaseData: {};
+    getShowCaseData: any;
+    nulifyDataLimit: any;
+}
+
 interface TypesInterface {
     id: number,
     name: string,
@@ -57,7 +70,7 @@ interface TypesInterface {
     updatedAt: any
 }
 
-function ShowCaseSideBar(store: any): ReactElement {
+function ShowCaseSideBar(store: Store): ReactElement {
     const history = useHistory()
     const classes = useStyles();
     const [brandId, setBrandId] = useState((getBrandId()))
@@ -65,20 +78,7 @@ function ShowCaseSideBar(store: any): ReactElement {
     const [types, setTypes] = useState([])
     const [brands, setBrands] = useState([])
     const [sliderValue, setSliderValue] = useState([0, 7000])
-    // const [checkedBrand, setcheckedBrand] = useState({
-    //     actions: false,
-    //     rpg: false,
-    //     strategy: false,
-    //     all: false,
-    // });
-    // const [checkedType, setcheckedType] = useState({
-    //     actions: false,
-    //     rpg: false,
-    //     strategy: false,
-    //     all: false,
-    // });
-
-    const { dataLimit, showCaseData, getShowCaseData } = store
+    const { dataLimit, showCaseData, getShowCaseData, nulifyDataLimit } = store
 
     function getBrandId() {
         const search = new URLSearchParams(history.location.search)
@@ -92,10 +92,12 @@ function ShowCaseSideBar(store: any): ReactElement {
 
     const handleChangeType = async (event: any) => {
         if(event.target.value === "all") {
+            await nulifyDataLimit()
             await history.push(`${history.location.pathname.replace('typeId', '')}`)
             getShowCaseData(history, dataLimit)
             return
         }
+        await nulifyDataLimit()
         const search = new URLSearchParams(history.location.search)
         await search.set('typeId', event.target.value)
         await history.push(`${history.location.pathname}?${search.toString()}`)
@@ -122,7 +124,7 @@ function ShowCaseSideBar(store: any): ReactElement {
     }, [])
 
     return (
-        <Grid item md={3} className={classes.root}>
+        <Grid item md={3} className={`${classes.root}, show-case-sidebar`}>
             <Paper className={classes.paper}>
             <FormControl component="fieldset">
             <FormLabel component="legend">Жанры</FormLabel>
@@ -130,7 +132,7 @@ function ShowCaseSideBar(store: any): ReactElement {
                 {types && types.map((item: TypesInterface) => {
                     return <FormControlLabel value={item.id} control={<Radio />} label={item.name}/>
                 })}
-                <FormControlLabel value={""} control={<Radio />} label={"Сбросить жанр"}/>
+                <FormControlLabel   value={""} control={<Radio />} label={"Сбросить жанр"}/>
             </RadioGroup>
 
             {/* <RadioGroup value={memory} onChange={handleChangeMemory} aria-label="memory" name="memory1">

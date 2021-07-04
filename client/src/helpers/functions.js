@@ -95,6 +95,94 @@ const destroyToken = () => {
   localStorage.removeItem("token")
 }
 
+function calcSubPrice(game) {
+  return game.count * game.price
+}
+
+function calcTotalPrice(games) {
+  let totalPrice = 0;
+  games.forEach(game => {
+      totalPrice += game.subPrice
+  })
+  return totalPrice
+}
+
+async function getCart() {
+  let cart = await JSON.parse(localStorage.getItem('cart'))
+  if (!cart) {
+      cart = {
+          products: [],
+          totalPrice: 0
+      }
+  }
+  return cart
+}
+
+
+
+const addProductToCart = (gameId, price) => {
+  let cart = JSON.parse(localStorage.getItem('cart'))
+  if (!cart) {
+      cart = {
+          games: [],
+          totalPrice: 0
+      }
+  }
+  let newGame = {
+      gameId,
+      price,
+      count: 1,
+      subPrice: 0
+  }
+
+  let filteredCart = cart.games.filter(elem => elem.gameId === gameId)
+  if(filteredCart.length > 0) {
+      cart.games.filter(elem => elem.gameId !== gameId)
+  }
+  else {
+      cart.games.push(newGame)
+  }
+  newGame.subPrice = calcSubPrice(newGame)
+  cart.totalPrice = calcTotalPrice(cart.games)
+  localStorage.setItem('cart', JSON.stringify(cart))
+  // dispatch({
+  //     type: "CHANGE_COUNT",
+  //     payload: cart.products.length
+  // })
+}
+
+function changeProductCount(count, id) {
+  let cart = JSON.parse(localStorage.getItem('cart'))
+  console.log(cart)
+  cart.games = cart.games.map(elem => {
+      if(elem.gameId === id) {
+          elem.count = parseInt(count)
+          elem.subPrice = calcSubPrice(elem)
+      }
+      return elem
+  })
+  cart.totalPrice = calcTotalPrice(cart.games)
+  localStorage.setItem('cart', JSON.stringify(cart))
+  getCart()
+}
+
+async function removeProductFromCart(product) {
+  let cart = JSON.parse(localStorage.getItem('cart'))
+  let filteredCart = {
+      products: [...cart.products.filter(elem => elem.item.id !== product.id)],
+      totalPrice: 0            
+  }
+  await filteredCart.products.filter(elem => elem.item.id !== product.id)
+  await localStorage.removeItem('cart')
+  filteredCart.totalPrice = calcTotalPrice(filteredCart.products)
+  await localStorage.setItem('cart', JSON.stringify(filteredCart))
+  await getCart()
+}
+
+async function removeAllProductsFromCart() {
+  await localStorage.removeItem('cart')
+}
+
 export {
   $host,
   $authHost,
@@ -109,5 +197,12 @@ export {
   login,
   registration,
   getDecodedToken,
-  destroyToken
+  destroyToken,
+  addProductToCart,
+  calcTotalPrice,
+  calcSubPrice,
+  getCart,
+  changeProductCount,
+  removeProductFromCart,
+  removeAllProductsFromCart
 };

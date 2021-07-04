@@ -2,8 +2,8 @@
     "compilerOptions": {
       "target": "es5",
       "watch": true,
-      "rootDir": "src",
-      "outDir": "ts-built",
+      // "rootDir": "src",
+      // "outDir": "ts-built",
       "lib": [
         "dom",
         "dom.iterable",

@@ -69,7 +69,7 @@ const ProductsContextProvider = ({ children }) => {
 
     const changeDataLimit = async (story) => {
         let some = state.dataLimit
-        some += 8
+        some += 4
         // console.log(some)
         dispatch({
             type: "CHANGE_DATA_LIMIT",

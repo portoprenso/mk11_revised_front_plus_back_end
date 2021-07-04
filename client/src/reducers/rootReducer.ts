@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import rosterReducer from './RosterReducer'
-import productReducer from './ProductsReducer'
+import gameReducer from './GameReducer'
 import authReducer from './AuthReducer'
 
 export const rootReducer = combineReducers({
     rosterReducer,
-    productReducer,
+    gameReducer,
     authReducer
 })
 

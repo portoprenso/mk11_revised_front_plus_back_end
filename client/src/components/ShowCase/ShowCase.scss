@@ -1,21 +1,54 @@
+$breakpoint-950: 950px;
+$breakpoint-768: 768px;
+$breakpoint-450: 450px;
 .showcase__container {
     padding-top: 75px;
     width: 100%;
     display: flex;
+    justify-content: space-around;
     margin: 0 auto;
     background-image: url(https://cdn-prod.mortalkombat.com/ultimate/media/media-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+
 }
 
 .products__container {
-    width: 65%;
+    width: 55%;
     /* height: 100%; */
-    border: 1px solid black;
+    // border: 1px solid black;
 }
 
 .products__categories {
     width: 25%;
     /* height: 100%; */
+}
+
+@media (max-width: $breakpoint-950) {
+  .showcase__container{
+      flex-direction: column-reverse;
+      align-items: center;
+  }
+  .show-case-sidebar{
+      width: 400px;
+  }
+}
+@media (max-width: $breakpoint-450) {
+//   .showcase__container{
+//       flex-direction: column-reverse;
+//       align-items: center;
+//   }
+  .show-case-sidebar{
+      width: 300px;
+  }
+}
+@media (max-width: $breakpoint-768) {
+  .products__container{
+      width: 100%;
+
+      .row{
+          margin: 0;
+      }
+  }
 }

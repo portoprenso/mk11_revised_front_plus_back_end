@@ -18,12 +18,12 @@ import { useHistory } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
-        productsData: state.productReducer.productsData,
-        productDetails: state.productReducer.productsDetails,
+        gamesData: state.gameReducer.gamesData,
+        gameDetails: state.gameReducer.gameDetails,
         rosterData: state.rosterReducer.rosterData,
-        paginationPages: state.productReducer.paginationPages,
-        cart: state.productReducer.cart,
-        dataLimit: state.productReducer.dataLimit,
+        paginationPages: state.gameReducer.paginationPages,
+        cart: state.gameReducer.cart,
+        dataLimit: state.gameReducer.dataLimit,
     };
 };
 

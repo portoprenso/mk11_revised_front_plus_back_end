@@ -7,19 +7,20 @@ import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { connect } from "react-redux";
 import { $host, getDecodedToken } from "../../helpers/functions";
+import { GET_CURRENT_USER } from "../../types/authTypes";
 
 const mapStateToProps = (state) => {
     return {
-        productsData: state.productReducer.productsData,
+        gamesData: state.gameReducer.gamesData,
         user: state.authReducer.user,
-        showCaseData: state.productReducer.showCaseData,
-        dataLimit: state.productReducer.dataLimit
+        showCaseData: state.gameReducer.showCaseData,
+        dataLimit: state.gameReducer.dataLimit
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
     nulifyDataLimit: async (history) => {
-        let some = 8;
+        let some = 4;
         dispatch({
             type: "NULIFY_DATA_LIMIT",
             payload: some,
@@ -31,17 +32,18 @@ const mapDispatchToProps = (dispatch) => ({
         const data = await getDecodedToken()
         if(!data){
             dispatch({
-                type: "GET_CURRENT_USER",
+                type: GET_CURRENT_USER,
                 payload: null
             })
         }
         if(data){
             dispatch({
-                type: "GET_CURRENT_USER",
+                type: GET_CURRENT_USER,
                 payload: data
             })
         }
     },
+
     getShowCaseData: async (history, datalimit) => {
         const search = new URLSearchParams(history.location.search);
         search.set("_limit", datalimit);
@@ -59,7 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
     changeDataLimit: async (story, dataLimit) => {
         let some = dataLimit;
-        some += 8;
+        some += 4;
         dispatch({
             type: "CHANGE_DATA_LIMIT",
             payload: some,

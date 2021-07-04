@@ -1,82 +1,45 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import "./EditProduct.scss";
-import { Card, Alert } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import "../../Main.scss";
+import { Link, useParams } from "react-router-dom";
 import {
   Button,
-  ButtonGroup,
   Grid,
   TextareaAutosize,
   Typography,
   Menu,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import { useAuth } from "../../../contexts/AuthContext";
-// import { useProducts } from "../../../contexts/ProductsContext";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 import { connect } from "react-redux";
-import axios from "axios";
-import { JSON_API } from "../../../helpers/static";
-import { $authHost, $host, fetchBrands, fetchTypes } from "../../../helpers/functions";
-
-
-
+import {
+  $authHost,
+  $host,
+  fetchBrands,
+  fetchTypes,
+} from "../../../helpers/functions";
+import { GET_SHOWCASE_DATA_DETAILS } from "../../../types/gameTypes";
 
 const mapStateToProps = (state) => {
   return {
-    productDetails: state.productReducer.productDetails,
-    productsData: state.productReducer.productsData,
-    showCaseDataDetails: state.productReducer.showCaseDataDetails,
-    user: state.authReducer.user
+    gameDetails: state.gameReducer.gameDetails,
+    gamesData: state.gameReducer.gamesData,
+    showCaseDataDetails: state.gameReducer.showCaseDataDetails,
+    user: state.authReducer.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  // getProductsData: async (history, dataLimit) => {
-  //   const search = new URLSearchParams(history.location.search);
-  //   search.set("_limit", dataLimit);
-  //   history.push(`${history.location.pathname}?${search.toString()}`);
-  //   let res = await axios(
-  //     `${JSON_API}/products/?_limit=${dataLimit}&${window.location.search}`
-  //   );
-  //   dispatch({
-  //     type: "GET_PRODUCTS_DATA",
-  //     payload: res,
-  //   });
-  // },
-  getShowCaseData: async () => {
-    let { data } = await $host.get(`api/game/`);
-    dispatch({
-      type: "GET_SHOWCASE_DATA",
-      payload: data.rows,
-    });
-  },
-  // getProductDetails: async (id) => {
-  //   let { data } = await axios(`${JSON_API}/products/${id}`)
-  //   dispatch({
-  //       type: 'GET_PRODUCTS_DETAILS',
-  //       payload: data
-  //   });
-  // },
-  // editProduct: async (id, newObj, story, getShowCaseData) => {
-  //   await axios.patch(`${JSON_API}/products/${id}`, newObj);
-  //   getShowCaseData(story);
-  // },
   editShowCaseDetails: async (id, newObj) => {
     await $authHost.patch(`/api/game/${id}`, newObj);
   },
-  // editShowCaseDetails: async (id, newObj, story, getShowCaseData) => {
-  //   await $host.patch(`/game/${id}`, newObj);
-  //   getShowCaseData(story);
-  // },
   getShowCaseDetails: async (id) => {
     let { data } = await $host(
       `${process.env.REACT_APP_API_URL}api/game/${id}`
     );
     dispatch({
-      type: "GET_SHOWCASE_DATA_DETAILS",
+      type: GET_SHOWCASE_DATA_DETAILS,
       payload: data,
     });
   },
@@ -87,53 +50,49 @@ const EditProduct = (store, { name, body }) => {
     showCaseDataDetails,
     editProduct,
     getShowCaseDetails,
-    getShowCaseData,
     editShowCaseDetails,
-    user
+    user,
   } = store;
   const { id } = useParams();
-  // const { getProductDetails, productDetails, editProduct, getProductsData } = useProducts()
 
-  const [error, setError] = useState("");
   const [perc, setPerc] = useState(0);
   const [selectedTypes, setSelectedTypes] = useState(null);
   const [selectedBrands, setSelectedBrands] = useState(null);
-  const [types, setTypes] = useState(null)
-  const [brands, setBrands] = useState(null)
-  // const { currentUser } = useAuth();
-  const history = useHistory();
+  const [types, setTypes] = useState(null);
+  const [brands, setBrands] = useState(null);
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const priceRef = useRef(null);
   const oldPriceRef = useRef(null);
   const discountPercentPriceRef = useRef(null);
-  const brandIdRef = useRef(null);
-  const typeIdRef = useRef(null);
   const imageRef = useRef(null);
   const imageLargeRef = useRef(null);
   const countInStockRef = useRef(null);
 
   useEffect(() => {
-    getShowCaseDetails(id)
-    fetchBrands().then(data => setBrands(data));
-    fetchTypes().then(data => setTypes(data));
+    getShowCaseDetails(id);
+    fetchBrands().then((data) => setBrands(data));
+    fetchTypes().then((data) => setTypes(data));
   }, [nameRef.current]);
 
   useEffect(() => {
-    putData()
-  }, [showCaseDataDetails])
-
-  console.log(showCaseDataDetails)
+    putData();
+  }, [showCaseDataDetails]);
 
   function putData() {
-    if (showCaseDataDetails.info && nameRef.current && user && user.role === "ADMIN") {
+    if (
+      showCaseDataDetails.info &&
+      nameRef.current &&
+      user &&
+      user.role === "ADMIN"
+    ) {
       nameRef.current.value = showCaseDataDetails.name;
-      console.log(`this is showcase in putdata ${showCaseDataDetails}`)
+      console.log(`this is showcase in putdata ${showCaseDataDetails}`);
       descriptionRef.current.value = showCaseDataDetails.info[0].description;
       priceRef.current.value = showCaseDataDetails.price;
       oldPriceRef.current.value = showCaseDataDetails.oldPrice;
       discountPercentPriceRef.current.value =
-      showCaseDataDetails.discountPercent;
+        showCaseDataDetails.discountPercent;
       setSelectedBrands(showCaseDataDetails.brandId);
       setSelectedTypes(showCaseDataDetails.typeId);
       countInStockRef.current.value = showCaseDataDetails.countInStock;
@@ -146,10 +105,6 @@ const EditProduct = (store, { name, body }) => {
   }
 
   async function handleChangeShowCaseDetails() {
-    // let newObjInfo = new FormData();
-    // newObjInfo.append("name", nameRef.current.value);
-    // newObjInfo.append("description", descriptionRef.current.value);
-
     let newObj = new FormData();
     newObj.append("name", nameRef.current.value);
     newObj.append("price", parseInt(priceRef.current.value));
@@ -171,7 +126,6 @@ const EditProduct = (store, { name, body }) => {
       })
     );
     await editShowCaseDetails(id, newObj);
-    console.log("handleChangeShowCaseDetails worked")
   }
 
   return (
@@ -241,11 +195,6 @@ const EditProduct = (store, { name, body }) => {
                 </Grid>
                 <Grid className="inp-type__inputContainers">
                   <Typography variant="h6">Издатель</Typography>
-                  {/* <TextareaAutosize
-                                        className="inp-type__input"
-                                        ref={authorRef}
-                                        placeholder="Издатель"
-                                    /> */}
                   <PopupState variant="popover" popupId="demo-popup-menu">
                     {(popupState) => (
                       <React.Fragment>
@@ -320,45 +269,23 @@ const EditProduct = (store, { name, body }) => {
                 </Grid>{" "}
                 <Grid className="inp-type__inputContainers">
                   <Typography variant="h6">Маленькое изображение</Typography>
-                  <input
-                  type="file"
-                    ref={imageRef}
-                  />
-                  {
-                    showCaseDataDetails && <img src={`${process.env.REACT_APP_API_URL}${showCaseDataDetails.image}`} alt={`${showCaseDataDetails.image}`} />
-                  }
-                  {/* <TextareaAutosize
-                    className="inp-type__input"
-                    ref={imageRef}
-                    placeholder="Маленькое изображение"
-                  /> */}
-                  {/* {
-                    imageRef.current ?
-                    <img src={`${process.env.REACT_APP_API_URL}${imageRef.current.value}`} alt="" />
-                    :
-                    <></>
-                  } */}
+                  <input type="file" ref={imageRef} />
+                  {showCaseDataDetails && (
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}${showCaseDataDetails.image}`}
+                      alt={`${showCaseDataDetails.image}`}
+                    />
+                  )}
                 </Grid>
                 <Grid className="inp-type__inputContainers">
                   <Typography variant="h6">Большое изображение</Typography>
-                  <input
-                  type="file"
-                    ref={imageLargeRef}
-                  />
-                  {
-                    showCaseDataDetails && <img src={`${process.env.REACT_APP_API_URL}${showCaseDataDetails.imageLarge}`} alt={`${showCaseDataDetails.imageLarge}`} />
-                  }
-
-                  {/* <TextareaAutosize
-                    className="inp-type__input"
-                    ref={imageLargeRef}
-                    placeholder="Большое изображение"
-                  /> */}
-                  {/* {imageLargeRef.current ? 
-                  <img src={`${process.env.REACT_APP_API_URL}${imageLargeRef.current.value}`} alt="" />
-                  :
-                  <></>
-                  } */}
+                  <input type="file" ref={imageLargeRef} />
+                  {showCaseDataDetails && (
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}${showCaseDataDetails.imageLarge}`}
+                      alt={`${showCaseDataDetails.imageLarge}`}
+                    />
+                  )}
                 </Grid>
                 <Grid className="inp-type__inputContainers">
                   <Typography variant="h6">Количество в наличии</Typography>

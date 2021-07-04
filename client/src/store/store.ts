@@ -5,7 +5,6 @@ import rootReducer from '../reducers/rootReducer'
 // export function createStore(rootReducer, initialState){
 //     let state = rootReducer(initialState, {type: '__INIT__'})
 //     const subscribers = []
-
 //     return {
 //         dispatch(action) {
 //             state = rootReducer(state, action);
@@ -20,7 +19,6 @@ import rootReducer from '../reducers/rootReducer'
 //     }
 // }
 
-
 export type storeType = {
     history: any,
     getProductsData: (history: any, dataLimit: string) => [],
@@ -30,9 +28,7 @@ export type storeType = {
     showCaseData: any
 }
 
-
-
 const store = createStore(rootReducer, applyMiddleware(thunk))
-console.log(store)
+// console.log(store)
 
 export default store
